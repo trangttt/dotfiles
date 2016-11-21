@@ -259,4 +259,6 @@ noremap <F8> :buffers<CR>
 
 
 "Auto commit config file
+autocmd BufWritePost ~/.tmux.conf execute '!cd ~/dotfiles && git add tmux.conf && git commit -m "Update tmux.conf" && git push'
+autocmd BufWritePost ~/.zshrc execute '!cd ~/dotfiles && git add zshrc && git commit -m "Update zshrc" && git push'
 autocmd BufWritePost ~/.vimrc execute '!cd ~/dotfiles && git add vimrc && git commit -m "Update vimrc" && git push'
