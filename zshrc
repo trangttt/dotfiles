@@ -99,7 +99,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 #Add env.sh
-source ~/Projects/config/env.sh
+source ~/dotfiles/env.sh
 
 #Powerline
 powerline-daemon -q
