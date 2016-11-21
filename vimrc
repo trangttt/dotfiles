@@ -258,5 +258,5 @@ noremap <F9> :bnext<CR>
 noremap <F8> :buffers<CR>
 
 
-#Auto commit config file
+"Auto commit config file
 "autocmd BufWritePost ~/.vimrc execute '!cd ~/dotfiles && git add % && git commit -m %'
