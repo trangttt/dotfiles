@@ -259,5 +259,4 @@ noremap <F8> :buffers<CR>
 
 
 "Auto commit config file
-autocmd BufWritePost ~/.vimrc execute '!cd ~/dotfiles && git add vimrc && git
-commit -m "Update vimrc `date`"'
+autocmd BufWritePost ~/.vimrc execute '!cd ~/dotfiles && git add vimrc && git commit -m "Update vimrc"'
