@@ -265,7 +265,7 @@ command! -nargs=1 Silent
 "Auto commit config files
 autocmd BufWritePost ~/.tmux.conf Silent exe '!cd ~/dotfiles && git add tmux.conf && git commit -m "Update tmux.conf" ; git push'
 autocmd BufWritePost ~/.zshrc Silent exe '!cd ~/dotfiles && git add zshrc && git commit -m "Update zshrc" ; git push'
-autocmd BufWritePost ~/.vimrc Silent exe '!cd ~/dotfiles && git add vimrc && git commit -m "Update vimrc" ; git push'
-autocmd BufWritePost ~/.zpreztorc Silent exec '!cd ~/dotfiles && git add zpreztorc && git commit -m "Update zpreztorc" ; git push'
-autocmd BufWritePost *.wiki Silent exe '!cd ~/vimwiki && git add % && git commit -m "Update %" ; git push'
+autocmd BufWritePost ~/.vimrc Silent exe '!cd ~/dotfiles && git add vimrc && git commit -m "Update vimrc" >/dev/null 2>&1; git push'
+autocmd BufWritePost ~/.zpreztorc Silent exec '!cd ~/dotfiles && git add zpreztorc && git commit -m "Update zpreztorc" >/dev/null 2>&1; git push'
+autocmd BufWritePost *.wiki Silent exe '!cd ~/vimwiki && git add % && git commit -m "Update %" >/dev/null 2>&1; git push'
 autocmd BufWritePost env.sh Silent exe '!cd ~/dotfiles && git add % && git commit -m "Update %" ; git push'
