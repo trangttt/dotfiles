@@ -259,7 +259,7 @@ noremap <F9> :bnext<CR>
 noremap <F8> :buffers<CR>
 
 command! -nargs=1 Silent
-\ | execute ':silent! '.<q-args>
+\ | execute ':silent! !'.<q-args>
 \ | execute ':redraw!'
 
 "Auto commit and push config files
