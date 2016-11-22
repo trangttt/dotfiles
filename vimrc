@@ -259,9 +259,9 @@ noremap <F9> :bnext<CR>
 noremap <F8> :buffers<CR>
 
 "Auto commit config files
-autocmd BufWritePost ~/.tmux.conf execute '!cd ~/dotfiles && git add tmux.conf && git commit -m "Update tmux.conf" ; git push'
-autocmd BufWritePost ~/.zshrc execute '!cd ~/dotfiles && git add zshrc && git commit -m "Update zshrc" ; git push'
-autocmd BufWritePost ~/.vimrc execute '!cd ~/dotfiles && git add vimrc && git commit -m "Update vimrc" ; git push'
-autocmd BufWritePost ~/.zpreztorc execute '!cd ~/dotfiles && git add zpreztorc && git commit -m "Update zpreztorc" ; git push'
-autocmd BufWritePost *.wiki execute '!cd ~/vimwiki && git add % && git commit -m "Update %" ; git push'
-autocmd BufWritePost env.sh execute '!cd ~/dotfiles && git add % && git commit -m "Update %" ; git push'
+autocmd BufWritePost ~/.tmux.conf silent execute '!cd ~/dotfiles && git add tmux.conf && git commit -m "Update tmux.conf" ; git push'
+autocmd BufWritePost ~/.zshrc silent execute '!cd ~/dotfiles && git add zshrc && git commit -m "Update zshrc" ; git push'
+autocmd BufWritePost ~/.vimrc silent execute '!cd ~/dotfiles && git add vimrc && git commit -m "Update vimrc" ; git push'
+autocmd BufWritePost ~/.zpreztorc silent execute '!cd ~/dotfiles && git add zpreztorc && git commit -m "Update zpreztorc" ; git push'
+autocmd BufWritePost *.wiki silent execute '!cd ~/vimwiki && git add % && git commit -m "Update %" ; git push'
+autocmd BufWritePost env.sh silent execute '!cd ~/dotfiles && git add % && git commit -m "Update %" ; git push'
