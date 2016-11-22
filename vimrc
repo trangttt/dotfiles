@@ -259,8 +259,8 @@ noremap <F9> :bnext<CR>
 noremap <F8> :buffers<CR>
 
 "Command 
-command! Wc Gwrite|Gcommit
-command! Wcp GWrite|Gcommit|Gpush
+command! -nargs=1 Wc Gwrite|Gcommit -m <q-args>
+command! Wcp GWrite|Gcommit| Gpush
 
 "command! -nargs=1 Silent
 "\ | execute ':silent! execute '.<q-args>
