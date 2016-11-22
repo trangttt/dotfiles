@@ -278,16 +278,16 @@ command! -nargs=1 Silent
 "hook
 autocmd BufWritePost .tmux.conf Silent '!cd ~/dotfiles && { git add tmux.conf }
                                         \ && { git commit -m "Update tmux.conf" } 
-                                        \ && { git push } ;'
+                                        \ && { git push >/dev/null 2>&1 } ;'
 autocmd BufWritePost .zshrc Silent '!cd ~/dotfiles && { git add zshrc }
                                         \ && { git commit -m "Update zshrc" } 
-                                        \ && git push ;'
+                                        \ && { git push >/dev/null 2>&1 } ;'
 autocmd BufWritePost .vimrc Silent '!cd ~/dotfiles && {  git add vimrc >/dev/null 2>&1 } 
                                         \ && { git commit -m "Update vimrc" >/dev/null 2>&1 } 
-                                        \ && { git push >/dev/null 2>&1}' 
+                                        \ && { git push >/dev/null 2>&1} ;' 
 autocmd BufWritePost .zpreztorc Silent '!cd ~/dotfiles && { git add zpreztorc } 
-                                        \ && { git commit -m "Update zpreztorc" } 
-                                        \ &&  git push ;'
+                                        \ && { git commit -m "Update zpreztorc"  >/dev/null 2>&1 } 
+                                        \ && { git push >/dev/null 2>&1}'
 autocmd BufWritePost *.wiki Silent '!cd ~/vimwiki && git add % 
                                         \ && git commit -m "Update %" 
                                         \ && git push ;'
