@@ -276,32 +276,32 @@ command! -nargs=1 Silent
 
 "Experimenting with hook
 "Auto commit and push config files, silent, .tmux
-autocmd BufWritePost .tmux.conf execute '!echo "Push to github" 
+autocmd BufWritePost .tmux.conf silent execute '!echo "Push to github" 
                                 \ | silent! execute '!cd ~/dotfiles && { git add tmux.conf }
                                         \ && { git commit -m "Update tmux.conf" >/dev/null 2>&1 } 
                                         \ && { git push >/dev/null 2>&1 } ;' 
                                 \ | execute ':redraw!'
-autocmd BufWritePost .zshrc execute '!echo "Push to github"' 
+autocmd BufWritePost .zshrc silent execute '!echo "Push to github"' 
                             \ | silent! execute '!cd ~/dotfiles && { git add zshrc }
                                         \ && { git commit -m "Update zshrc" >/dev/null 2>&1 } 
                                         \ && { git push >/dev/null 2>&1 } ;'
                             \ | execute ':redraw!'
-autocmd BufWritePost .vimrc execute '!echo "Push to github"' 
+autocmd BufWritePost .vimrc silent execute '!echo "Push to github"' 
                                     \ | silent! execute '!cd ~/dotfiles && {  git add vimrc >/dev/null 2>&1 } 
                                         \ && { git commit -m "Update vimrc" >/dev/null 2>&1 } 
                                         \ && { git push >/dev/null 2>&1} ;'  
                                     \ | execute ':redraw!'
-autocmd BufWritePost .zpreztorc execute '!echo "Push to github"' 
+autocmd BufWritePost .zpreztorc silent execute '!echo "Push to github"' 
                                     \ | silent! execute '!cd ~/dotfiles && { git add zpreztorc } 
                                         \ && { git commit -m "Update zpreztorc"  >/dev/null 2>&1 } 
                                         \ && { git push >/dev/null 2>&1}'
                                     \ | execute ':redraw!'
-autocmd BufWritePost *.wiki execute '!echo "Push to github"' 
+autocmd BufWritePost *.wiki silent execute '!echo "Push to github"' 
                                     \ | silent! execute '!cd ~/vimwiki && { git add %  }
                                         \ && { git commit -m "Update %" >/dev/null 2>&1 } 
                                         \ && { git push >/dev/null 2>&1 } ;'
                                     \ | execute ':redraw!'
-autocmd BufWritePost env.sh execute '!echo "Push to github"' 
+autocmd BufWritePost env.sh silent execute '!echo "Push to github"' 
                                     \ | silent! execute '!cd ~/dotfiles && { git add %  }
                                         \ && { git commit -m "Update %" >/dev/null 2>&1 } 
                                         \ && { git push >/dev/null 2>&1 } ;'
