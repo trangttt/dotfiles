@@ -275,5 +275,9 @@ autocmd BufWritePost .vimrc Silent '!cd ~/dotfiles && {  git add vimrc >/dev/nul
 autocmd BufWritePost .zpreztorc Silent '!cd ~/dotfiles && { git add zpreztorc} 
                                         \ && { git commit -m "Update zpreztorc" } 
                                         \ &&  git push ;'
-autocmd BufWritePost *.wiki Silent '!cd ~/vimwiki && git add % && git commit -m "Update %" ; git push ;'
-autocmd BufWritePost env.sh Silent '!cd ~/dotfiles && git add % && git commit -m "Update %" ; git push ;'
+autocmd BufWritePost *.wiki Silent '!cd ~/vimwiki && git add % 
+                                        \ && git commit -m "Update %" 
+                                        \ && git push ;'
+autocmd BufWritePost env.sh Silent '!cd ~/dotfiles && git add % 
+                                        \ && git commit -m "Update %" 
+                                        \ && git push ;'
