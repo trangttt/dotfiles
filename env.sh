@@ -1,4 +1,4 @@
- #!/bin/zsh
+#!/bin/zsh
 
     # PATH
     export PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/Library/Python/2.7/bin"
