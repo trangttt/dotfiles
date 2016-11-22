@@ -262,7 +262,7 @@ command! -nargs=1 Silent
 \ | execute ':silent! execute '.<q-args>
 \ | execute ':redraw!'
 
-"Auto commit and push config files, silent
+"Auto commit and push config files, silent, .tmux
 autocmd BufWritePost .tmux.conf Silent '!cd ~/dotfiles && git add tmux.conf && git commit -m "Update tmux.conf" ; git push'
 autocmd BufWritePost .zshrc Silent '!cd ~/dotfiles && git add zshrc && git commit -m "Update zshrc" ; git push'
 autocmd BufWritePost .vimrc Silent '!cd ~/dotfiles && {  git add vimrc >/dev/null 2>&1 } && { git commit -m "Update vimrc" >/dev/null 2>&1 } && { git push >/dev/null 2>&1}' 
