@@ -305,3 +305,14 @@ autocmd BufWritePost env.sh execute '!echo "Push to github"'
                                         \ && { git commit -m "Update %" >/dev/null 2>&1 } 
                                         \ && { git push >/dev/null 2>&1 } ;'
                                     \ | execute ':redraw!'
+
+"""easymotion
+" Gif config
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+" Without these mappings, `n` & `N` works fine. (These mappings just provide
+" different highlight method and have some other features )
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
