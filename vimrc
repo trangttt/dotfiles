@@ -281,10 +281,10 @@ autocmd BufWritePost .tmux.conf execute '!echo "Push to github"
                                         \ && { git push >/dev/null 2>&1 } ;' 
                                 \ | execute ':redraw!'
 autocmd BufWritePost .zshrc execute '!echo "Push to github"' 
-                                    \ | silent! execute '!cd ~/dotfiles && { git add zshrc }
+                            \ | silent! execute '!cd ~/dotfiles && { git add zshrc }
                                         \ && { git commit -m "Update zshrc" } 
                                         \ && { git push >/dev/null 2>&1 } ;'
-                                    \ | execute ':redraw!'
+                            \ | execute ':redraw!'
 autocmd BufWritePost .vimrc execute '!echo "Push to github"' 
                                     \ | silent! execute '!cd ~/dotfiles && {  git add vimrc >/dev/null 2>&1 } 
                                         \ && { git commit -m "Update vimrc" >/dev/null 2>&1 } 
