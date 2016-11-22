@@ -284,7 +284,8 @@ autocmd BufWritePost .zshrc execute '!cd ~/dotfiles && { git add zshrc }
                                         \ && { git push >/dev/null 2>&1 } ;'
 autocmd BufWritePost .vimrc silent! execute '!cd ~/dotfiles && {  git add vimrc >/dev/null 2>&1 } 
                                         \ && { git commit -m "Update vimrc" >/dev/null 2>&1 } 
-                                        \ && { git push >/dev/null 2>&1} ;' 
+                                        \ && { git push >/dev/null 2>&1} ;'  
+                                    \ | execute ':redraw!'
 autocmd BufWritePost .zpreztorc execute '!cd ~/dotfiles && { git add zpreztorc } 
                                         \ && { git commit -m "Update zpreztorc"  >/dev/null 2>&1 } 
                                         \ && { git push >/dev/null 2>&1}'
