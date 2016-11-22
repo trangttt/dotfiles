@@ -275,7 +275,7 @@ command! -nargs=1 Silent
 
 "Experimenting with hook
 "Auto commit and push config files, silent, .tmux
-"hook
+"hook, test
 autocmd BufWritePost .tmux.conf Silent '!cd ~/dotfiles && { git add tmux.conf }
                                         \ && { git commit -m "Update tmux.conf" } 
                                         \ && { git push >/dev/null 2>&1 } ;'
