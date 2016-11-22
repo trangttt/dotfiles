@@ -42,8 +42,8 @@
     alias egrep="egrep --color=always"
     alias dls="cd $HOME/Downloads"
     alias docs="cd $HOME/Documents"
-    alias vimcfg="vim $HOME/.vimrc"
-    alias zshcfg="vim $HOME/.zshrc"
-    alias tmuxcfg="vim $HOME/.tmux.conf"
+    alias vimcfg="vim $HOME/dotfiles/vimrc"
+    alias zshcfg="vim $HOME/dotfiles/zshrc"
+    alias tmuxcfg="vim $HOME/dotfiles/tmux.conf"
     alias v="vim"
 
