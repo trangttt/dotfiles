@@ -259,12 +259,13 @@ noremap <F9> :bnext<CR>
 noremap <F8> :buffers<CR>
 
 "Command 
-command! -nargs=1 Wc Gwrite
-                    \ | execute ':Gcommit -m '.<q-args>
+command! -nargs=1 Wc  Gwrite | Gcommit -m <q-args>
 
 command! -nargs=1 Wp  | execute ':Gwrite'
                     \ | execute ':Gcommit -m '.<q-args> |
                     \ | execute ':Gpush'
+
+
 "command! -nargs=1 Silent
 "\ | execute ':silent! execute '.<q-args>
 "\ | execute ':redraw!'
