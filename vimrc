@@ -38,6 +38,7 @@ Plugin 'mtth/scratch.vim'  "Taking note
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+"Plugin 'peterhurford/send.vim'
 
 "Vim snippets
 "Plugin 'MarcWeber/vim-addon-mw-utils'
