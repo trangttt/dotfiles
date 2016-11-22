@@ -270,7 +270,7 @@ command! -nargs=1 Wp  | execute ':Gwrite'
 
 
 command! -nargs=1 Silent
-\ | execute ':silent! execute '.<q-args>
+\ | execute ':execute '.<q-args>
 \ | execute ':redraw!'
 
 "Experimenting with hook
