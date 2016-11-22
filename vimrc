@@ -262,7 +262,7 @@ noremap <F8> :buffers<CR>
 command! -nargs=1 Wc Gwrite
                     \ | execute ':Gcommit -m '.<q-args>
 
-command! -nargs=1 Wp  | execute ':GWrite'
+command! -nargs=1 Wp  | execute ':Gwrite'
                     \ | execute ':Gcommit -m '.<q-args> |
                     \ | execute ':Gpush'
 "command! -nargs=1 Silent
