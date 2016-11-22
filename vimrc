@@ -275,7 +275,7 @@ command! -nargs=1 Silent
 
 "Experimenting with hook
 "Auto commit and push config files, silent, .tmux
-"Github
+"Github, test
 autocmd BufWritePost .tmux.conf execute '!echo "Push to github" 
                                 \ | silent! execute '!cd ~/dotfiles && { git add tmux.conf }
                                         \ && { git commit -m "Update tmux.conf" >/dev/null 2>&1 } 
