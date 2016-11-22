@@ -271,6 +271,7 @@ command! -nargs=1 Wp  | execute ':Gwrite'
 "\ | execute ':silent! execute '.<q-args>
 "\ | execute ':redraw!'
 
+"Experimenting with hook
 "Auto commit and push config files, silent, .tmux
 "autocmd BufWritePost .tmux.conf Silent '!cd ~/dotfiles && { git add tmux.conf }
                                         "\ && { git commit -m "Update tmux.conf" } 
