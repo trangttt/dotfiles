@@ -263,3 +263,4 @@ autocmd BufWritePost ~/.tmux.conf execute '!cd ~/dotfiles && git add tmux.conf &
 autocmd BufWritePost ~/.zshrc execute '!cd ~/dotfiles && git add zshrc && git commit -m "Update zshrc" ; git push'
 autocmd BufWritePost ~/.vimrc execute '!cd ~/dotfiles && git add vimrc && git commit -m "Update vimrc" ; git push'
 autocmd BufWritePost ~/.zpreztorc execute '!cd ~/dotfiles && git add zpreztorc && git commit -m "Update zpreztorc" ; git push'
+autocmd BufWritePost *.wiki execute '!cd ~/vimwiki && git add % && git commit -m "Update %" ; git push'
