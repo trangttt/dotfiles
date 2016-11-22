@@ -258,7 +258,7 @@ noremap <F7> :bprev<CR>
 noremap <F9> :bnext<CR>
 noremap <F8> :buffers<CR>
 
-
+"Mapping 
 noremap :wp :Gcommit
 "command! -nargs=1 Silent
 "\ | execute ':silent! execute '.<q-args>
