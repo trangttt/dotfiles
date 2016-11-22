@@ -258,14 +258,14 @@ noremap <F7> :bprev<CR>
 noremap <F9> :bnext<CR>
 noremap <F8> :buffers<CR>
 
-"command! -nargs=1 Silent
-"\ | execute ':silent !'.<q-args>
-"\ | execute ':redraw!'
+command! -nargs=1 Silent
+\ | execute ':silent! '.<q-args>
+\ | execute ':redraw!'
 
 "Auto commit and push config files
 autocmd BufWritePost ~/.tmux.conf silent execute '!cd ~/dotfiles && git add tmux.conf && git commit -m "Update tmux.conf" ; git push'
 autocmd BufWritePost ~/.zshrc silent execute '!cd ~/dotfiles && git add zshrc && git commit -m "Update zshrc" ; git push'
-autocmd BufWritePost ~/.vimrc silent! execute '!cd ~/dotfiles && git add vimrc && git commit -m "Update vimrc" ; git push'
+autocmd BufWritePost ~/.vimrc Silent execute '!cd ~/dotfiles && git add vimrc && git commit -m "Update vimrc" ; git push'
 autocmd BufWritePost ~/.zpreztorc silent execute '!cd ~/dotfiles && git add zpreztorc && git commit -m "Update zpreztorc"; git push'
 autocmd BufWritePost *.wiki silent execute '!cd ~/vimwiki && git add % && git commit -m "Update %" ; git push'
 autocmd BufWritePost env.sh silent execute '!cd ~/dotfiles && git add % && git commit -m "Update %" ; git push'
