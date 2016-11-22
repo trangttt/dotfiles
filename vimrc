@@ -264,7 +264,7 @@ command! -nargs=1 Wc  | execute ':Gwrite'
                     \ | execute ':redraw!'
 
 command! -nargs=1 Wp  | execute ':Gwrite'
-                    \ | execute ':Gcommit -m '.<q-args> |
+                    \ | execute ':Gcommit -m '.<q-args> 
                     \ | execute ':Gpush' 
                     \ | execute ':redraw!'
 
