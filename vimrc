@@ -264,3 +264,4 @@ autocmd BufWritePost ~/.zshrc execute '!cd ~/dotfiles && git add zshrc && git co
 autocmd BufWritePost ~/.vimrc execute '!cd ~/dotfiles && git add vimrc && git commit -m "Update vimrc" ; git push'
 autocmd BufWritePost ~/.zpreztorc execute '!cd ~/dotfiles && git add zpreztorc && git commit -m "Update zpreztorc" ; git push'
 autocmd BufWritePost *.wiki execute '!cd ~/vimwiki && git add % && git commit -m "Update %" ; git push'
+autocmd BufWritePost env.sh execute '!cd ~/dotfiles && git add % && git commit -m "Update %" ; git push'
