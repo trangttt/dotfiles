@@ -20,6 +20,7 @@ Plugin 'ervandew/supertab'
 Plugin 'majutsushi/tagbar'
 Plugin 'christoomey/vim-run-interactive'
 Plugin 'szw/vim-maximizer'
+Plugin 'vimwiki/vimwiki'
 
 "Moving
 Plugin 'easymotion/vim-easymotion'
