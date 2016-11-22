@@ -260,7 +260,7 @@ noremap <F8> :buffers<CR>
 
 "Command 
 command! -nargs=1 Wc Gwrite|Gcommit -m <q-args>
-command! Wcp GWrite|Gcommit| Gpush
+command! -nargs=1 Wcp GWrite | Gcommit -m <q-args> | Gpush
 
 "command! -nargs=1 Silent
 "\ | execute ':silent! execute '.<q-args>
