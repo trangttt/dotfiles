@@ -277,7 +277,27 @@ command! -nargs=1 Silent
 "Experimenting with hook
 "Auto commit and push config files, silent, .tmux
 autocmd BufRead ~/.*rc silent execute 
-            \ '!echo "\n CONFIG FILE. REMEMBER TO PUSH TO GITHUB"'
+            \ '!echo "\n CONFIG FILE. REMEMBER TO PUSH TO GITHUB" && read '
+
+autocmd BufRead ~/.*.conf silent execute 
+            \ '!echo "\n CONFIG FILE. REMEMBER TO PUSH TO GITHUB" && read '
+
+
+"""easymotion
+" Gif config
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+" Without these mappings, `n` & `N` works fine. (These mappings just provide
+" different highlight method and have some other features )
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
+
+
+
+
 "autocmd BufWritePost .tmux.conf silent execute '!echo "\nPush to github" 
                                 "\ | silent! execute '!cd ~/dotfiles && { git add tmux.conf }
                                         "\ && { git commit -m "Update tmux.conf" >/dev/null 2>&1 } 
@@ -309,13 +329,4 @@ autocmd BufRead ~/.*rc silent execute
                                         "\ && { git push >/dev/null 2>&1 } ;'
                                     "\ | execute ':redraw!'
 
-"""easymotion
-" Gif config
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
 
-" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
-" Without these mappings, `n` & `N` works fine. (These mappings just provide
-" different highlight method and have some other features )
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
