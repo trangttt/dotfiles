@@ -15,7 +15,7 @@
 
     # Owner
     export USER_NAME="TrangTran"
-    eval "$(rbenv init -)"
+    #eval "$(rbenv init -)"
 
 ###########################################################################
 #  FUNCTIONS 
