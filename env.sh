@@ -1,5 +1,7 @@
 #!/bin/zsh
-
+###########################################################################
+#  EXPORTS 
+###########################################################################
     # PATH evn
     export PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/Library/Python/2.7/bin"
     export EDITOR='vim'
@@ -15,6 +17,9 @@
     export USER_NAME="TrangTran"
     eval "$(rbenv init -)"
 
+###########################################################################
+#  FUNCTIONS 
+###########################################################################
     # FileSearch
     function f() { find . -iname "*$1*" ${@:2} }
     function r() { grep "$1" ${@:2} -R . }
@@ -22,19 +27,15 @@
     #mkdir and cd
     function mkcd() { mkdir -p "$@" && cd "$_"; }
 
-    # Aliases
+###########################################################################
+#  ALIASES 
+###########################################################################
     alias cppcompile='c++ -std=c++11 -stdlib=libc++'
 
     # Use sublimetext for editing config files
     alias zshconfig="subl ~/.zshrc"
     alias envconfig="subl ~/Projects/config/env.sh"
     alias rm='rm -i'
-
-    #Install ecd
-    export ENHANCD_COMMAND=ecd 
-    export ENHANCD_FILTER=fzy:percol
-    source ~/Downloads/enhancd/init.sh
-
 
     eval `gdircolors -b ~/.dir_colors`
     alias ls='gls -hF --color=auto'
@@ -47,3 +48,14 @@
     alias tmuxcfg="vim $HOME/dotfiles/tmux.conf"
     alias v="vim"
 
+###########################################################################
+#  CUSTOM INSTALLATIONS 
+###########################################################################
+
+    #Install ecd
+    export ENHANCD_COMMAND=ecd 
+    export ENHANCD_FILTER=fzy:percol
+    source ~/Downloads/enhancd/init.sh
+
+
+    
