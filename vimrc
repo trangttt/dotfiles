@@ -291,11 +291,13 @@ command! -nargs=1 Silent
 
 "Experimenting with hook
 "Auto commit and push config files, silent, .tmux
-autocmd BufRead ~/.*rc silent execute 
-            \ '!echo "\n CONFIG FILE. REMEMBER TO PUSH TO GITHUB" && read '
+autocmd! BufWritePost ~/.*rc silent execute 
+            \ '!echo "\n CONFIG file. Remember to PUSH to GITHUB" && sleep 1 '
+            \ | execute ":redraw!"
 
-autocmd BufRead ~/.*.conf silent execute 
-            \ '!echo "\n CONFIG FILE. REMEMBER TO PUSH TO GITHUB" && read '
+autocmd! BufWritePost ~/*.conf silent execute 
+            \ '!echo "\n CONFIG file. Remember to PUSH to GITHUB" && sleep 1 '
+            \ | execute ":redraw!"
 
 
 """easymotion
