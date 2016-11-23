@@ -1,3 +1,4 @@
+" vim:ft=vim  
 set nu
 set nocompatible
 filetype off
@@ -320,5 +321,3 @@ command! FollowSymlink call followsymlinks#FollowSymlink()
 command! ProjectRoot call projectroot#SetProjectRoot()
 autocmd! BufRead * silent! execute ':FollowSymlink'| silent! execute ':ProjectRoot' 
 
-"Set vimrc always vim filetype
-au BufNewFile,BufRead *vimrc set filetype=vim
