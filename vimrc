@@ -301,11 +301,11 @@ autocmd BufWritePost *.wiki silent execute '!echo "\nPush to github"'
                                         \ && { git commit -m "Update %" >/dev/null 2>&1 } 
                                         \ && { git push >/dev/null 2>&1 } ;'
                                     \ | execute ':redraw!'
-autocmd BufWritePost env.sh silent execute '!echo "\nPush to github"' 
-                                    \ | silent! execute '!cd ~/dotfiles && { git add %  }
-                                        \ && { git commit -m "Update %" >/dev/null 2>&1 } 
-                                        \ && { git push >/dev/null 2>&1 } ;'
-                                    \ | execute ':redraw!'
+"autocmd BufWritePost env.sh silent execute '!echo "\nPush to github"' 
+                                    "\ | silent! execute '!cd ~/dotfiles && { git add %  }
+                                        "\ && { git commit -m "Update %" >/dev/null 2>&1 } 
+                                        "\ && { git push >/dev/null 2>&1 } ;'
+                                    "\ | execute ':redraw!'
 
 """easymotion
 " Gif config
