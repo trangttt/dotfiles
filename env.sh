@@ -28,20 +28,6 @@
     function mkcd() { mkdir -p "$@" && cd "$_" ; }
 
 
-    #make vim follows symlinks
-	function vim() {
-	  args=()
-	  for i in $@; do
-		if [[ -h $i ]]; then
-		  args+=`readlink $i`
-		else
-		  args+=$i
-		fi
-	  done
-
-	  /usr/local/bin/vim -p "${args[@]}"
-	}
-
 ###########################################################################
 #  ALIASES 
 ###########################################################################

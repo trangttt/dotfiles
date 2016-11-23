@@ -1,4 +1,3 @@
-" vim:ft=vim  
 set nu
 set nocompatible
 filetype off
@@ -136,6 +135,11 @@ let g:jedi#popup_on_dot = 1
 
 "Jedi - show call signature
 let g:jedi#show_call_signatures = 1
+
+"Config vim to always follow symlink
+command! FollowSymlink call followsymlinks#FollowSymlink()
+command! ProjectRoot call projectroot#SetProjectRoot()
+autocmd! BufRead * silent! execute ':FollowSymlink'| silent! execute ':ProjectRoot' 
 
 filetype plugin indent on
 syntax on
@@ -316,8 +320,4 @@ omap / <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
 
-"Config vim to always follow symlink
-command! FollowSymlink call followsymlinks#FollowSymlink()
-command! ProjectRoot call projectroot#SetProjectRoot()
-autocmd! BufRead * silent! execute ':FollowSymlink'| silent! execute ':ProjectRoot' 
 
