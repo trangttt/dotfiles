@@ -299,6 +299,10 @@ autocmd! BufWritePost ~/*.conf silent execute
             \ '!echo "\n CONFIG file. Remember to PUSH to GITHUB" && sleep 1 '
             \ | execute ":redraw!"
 
+autocmd! BufWritePost ~/dotfiles/** silent execute 
+            \ '!echo "\n CONFIG file. Remember to PUSH to GITHUB" && sleep 1 '
+            \ | execute ":redraw!"
+
 
 """easymotion
 " Gif config
@@ -311,5 +315,10 @@ omap / <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
 
+"Config vim to always follow symlink
+command! FollowSymlink call followsymlinks#FollowSymlink()
+command! ProjectRoot call projectroot#SetProjectRoot()
+autocmd! BufRead * silent! execute ':FollowSymlink'| silent! execute ':ProjectRoot' 
 
-command! FollowSymlink call followsymlinks#s:MyFollowSymlink()
+"Set vimrc always vim filetype
+au BufNewFile,BufRead *vimrc set filetype=vim
