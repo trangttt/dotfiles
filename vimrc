@@ -299,6 +299,23 @@ autocmd! BufWritePost ~/*.conf silent execute
             \ '!echo "\n CONFIG file. Remember to PUSH to GITHUB" && sleep 1 '
             \ | execute ":redraw!"
 
+autocmd! BufWritePost ~/dotfiles/* silent execute 
+            \ '!echo "\n CONFIG file. Remember to PUSH to GITHUB" && sleep 1 '
+            \ | execute ":redraw!"
+
+
+functionn! s:MyFollowSymlink()
+    silent! let s:fname = resolve(expand('%:p'))
+    silent! bwipeout
+    silent! exec "edit " .s:fname
+endfunction
+command! FollowSymlink call s:MyFollowSymlink()
+
+augroup followsymlink
+    autocmd!
+    autocmd BufReadPost * FollowSymlink
+augroup END
+
 
 """easymotion
 " Gif config
