@@ -304,7 +304,7 @@ autocmd! BufWritePost ~/dotfiles/* silent execute
             \ | execute ":redraw!"
 
 
-functionn! s:MyFollowSymlink()
+function! s:MyFollowSymlink()
     silent! let s:fname = resolve(expand('%:p'))
     silent! bwipeout
     silent! exec "edit " .s:fname
