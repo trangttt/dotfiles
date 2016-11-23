@@ -281,7 +281,6 @@ command! -nargs=0 Dwp  | execute '!cd ~/dotfiles && git push '
 
 
 "frequent typo or useful commands
-"testing
 command! -nargs=0 W :w
 command! -nargs=0 S :source % 
 
