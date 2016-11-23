@@ -21,11 +21,11 @@
 #  FUNCTIONS 
 ###########################################################################
     # FileSearch
-    function f() { find . -iname "*$1*" ${@:2} }
-    function r() { grep "$1" ${@:2} -R . }
+    function f() { find . -iname "*$1*" ${@:2} ; }
+    function r() { grep "$1" ${@:2} -R . ; }
 
     #mkdir and cd
-    function mkcd() { mkdir -p "$@" && cd "$_"; }
+    function mkcd() { mkdir -p "$@" && cd "$_" ; }
 
 ###########################################################################
 #  ALIASES 
@@ -37,7 +37,7 @@
     alias envcfg="vim ~/Projects/config/env.sh"
     alias rm='rm -i'
 
-    eval `gdircolors -b ~/.dir_colors`
+    #eval `gdircolors -b ~/.dir_colors`
     alias ls='gls -hF --color=auto'
     alias grep="grep --color=always"
     alias egrep="egrep --color=always"
