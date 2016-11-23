@@ -299,23 +299,6 @@ autocmd! BufWritePost ~/*.conf silent execute
             \ '!echo "\n CONFIG file. Remember to PUSH to GITHUB" && sleep 1 '
             \ | execute ":redraw!"
 
-autocmd! BufWritePost ~/dotfiles/* silent execute 
-            \ '!echo "\n CONFIG file. Remember to PUSH to GITHUB" && sleep 1 '
-            \ | execute ":redraw!"
-
-
-function! s:MyFollowSymlink()
-    silent! let s:fname = resolve(expand('%:p'))
-    silent! bwipeout
-    silent! exec "edit " .s:fname
-endfunction
-command! FollowSymlink call s:MyFollowSymlink()
-
-augroup followsymlink
-    autocmd!
-    autocmd BufReadPost * FollowSymlink
-augroup END
-
 
 """easymotion
 " Gif config
@@ -329,38 +312,4 @@ map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
 
 
-
-
-
-"autocmd BufWritePost .tmux.conf silent execute '!echo "\nPush to github" 
-                                "\ | silent! execute '!cd ~/dotfiles && { git add tmux.conf }
-                                        "\ && { git commit -m "Update tmux.conf" >/dev/null 2>&1 } 
-                                        "\ && { git push >/dev/null 2>&1 } ;' 
-                                "\ | execute ':redraw!'
-"autocmd BufWritePost .zshrc silent execute '!echo "\nPush to github"' 
-                            "\ | silent! execute '!cd ~/dotfiles && { git add zshrc }
-                                        "\ && { git commit -m "Update zshrc" >/dev/null 2>&1 } 
-                                        "\ && { git push >/dev/null 2>&1 } ;'
-                            "\ | execute ':redraw!'
-"autocmd BufWritePost .vimrc silent execute '!echo "\nPush to github"' 
-                                    "\ | silent! execute '!cd ~/dotfiles && {  git add vimrc >/dev/null 2>&1 } 
-                                        "\ && { git commit -m "Update vimrc" >/dev/null 2>&1 } 
-                                        "\ && { git push >/dev/null 2>&1} ;'  
-                                    "\ | execute ':redraw!'
-"autocmd BufWritePost .zpreztorc silent execute '!echo "\nPush to github"' 
-                                    "\ | silent! execute '!cd ~/dotfiles && { git add zpreztorc } 
-                                        "\ && { git commit -m "Update zpreztorc"  >/dev/null 2>&1 } 
-                                        "\ && { git push >/dev/null 2>&1}'
-                                    "\ | execute ':redraw!'
-"autocmd BufWritePost *.wiki silent execute '!echo "\nPush to github"' 
-                                    "\ | silent! execute '!cd ~/vimwiki && { git add %  }
-                                        "\ && { git commit -m "Update %" >/dev/null 2>&1 } 
-                                        "\ && { git push >/dev/null 2>&1 } ;'
-                                    "\ | execute ':redraw!'
-"autocmd BufWritePost env.sh silent execute '!echo "\nPush to github"' 
-                                    "\ | silent! execute '!cd ~/dotfiles && { git add %  }
-                                        "\ && { git commit -m "Update %" >/dev/null 2>&1 } 
-                                        "\ && { git push >/dev/null 2>&1 } ;'
-                                    "\ | execute ':redraw!'
-
-
+command! FollowSymlink call followsymlinks#s:MyFollowSymlink()
