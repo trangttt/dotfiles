@@ -273,7 +273,7 @@ command! -nargs=1 Dwc  | silent! execute '!cd ~/dotfiles && git add . && git com
                     \  | execute ':redraw!'
 
 command! -nargs=1 Dwcp | silent! execute '!cd ~/dotfiles && git add . && git commit -m '.<q-args>
-                    \  | execute '!cd ~/dotfiles && git push >/dev/null 2>&1 '
+                    \  | execute '!cd ~/dotfiles && git push '
                     \  | execute ':redraw!'
 
 command! -nargs=0 Dwp  | silent! execute '!cd ~/dotfiles && git push '
