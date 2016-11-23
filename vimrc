@@ -269,11 +269,20 @@ command! -nargs=1 Wp  | execute ':Gwrite'
                     \ | execute ':Gpush' 
                     \ | execute ':redraw!'
 
-command -nargs=1 Dwc | silent! execute '!cd ~/dotfiles/ && git add . && git commit -m '.<q-args>
-                    \ | execute ':redraw!'
-command -nargs=1 Dwcp | silent! execute '!cd ~/dotfiles/ && git add . && git commit -m'.<q-args>
-                    \ | execute '!cd ~/dotfiles/ && git push >/dev/null 2>&1 '
-command Dwp | silent! execute '!cd ~/dotfiles && git push >/dev/null 2>&1'
+command! -nargs=1 Dwc  | execute '!cd ~/dotfiles && git add . && git commit -m '.<q-args>
+                    \  | execute ':redraw!'
+
+command! -nargs=1 Dwcp | execute '!cd ~/dotfiles && git add . && git commit -m '.<q-args>
+                    \  | execute '!cd ~/dotfiles && git push >/dev/null 2>&1 '
+                    \  | execute ':redraw!'
+
+command! -nargs=0 Dwp  | execute '!cd ~/dotfiles && git push '
+                    \  | execute ':redraw!'
+
+
+"frequent typo or useful commands
+command! -nargs=0 W :w
+command! -nargs=0 S :source % 
 
 
 command! -nargs=1 Silent
