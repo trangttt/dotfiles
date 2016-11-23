@@ -33,9 +33,9 @@
     alias cppcompile='c++ -std=c++11 -stdlib=libc++'
 
     # Use sublimetext for editing config files
-    alias zshcfg="vim ~/.zshrc"
-    alias envcfg="vim ~/Projects/config/env.sh"
-    alias rm='rm -i'
+    #alias zshcfg="vim ~/.zshrc"
+    #alias envcfg="vim ~/Projects/config/env.sh"
+    #alias rm='rm -i'
 
     #eval `gdircolors -b ~/.dir_colors`
     #alias ls='gls -hF --color=auto'
