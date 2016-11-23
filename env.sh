@@ -37,17 +37,17 @@
     alias envcfg="vim ~/Projects/config/env.sh"
     alias rm='rm -i'
 
-    eval `gdircolors -b ~/.dir_colors`
-    alias ls='gls -hF --color=auto'
-    alias grep="grep --color=always"
-    alias egrep="egrep --color=always"
-    alias dls="cd $HOME/Downloads"
-    alias docs="cd $HOME/Documents"
-    alias vimcfg="vim $HOME/dotfiles/vimrc"
-    alias zshcfg="vim $HOME/dotfiles/zshrc"
-    alias tmuxcfg="vim $HOME/dotfiles/tmux.conf"
-    alias v="vim"
-    alias g="git"
+    #eval `gdircolors -b ~/.dir_colors`
+    #alias ls='gls -hF --color=auto'
+    #alias grep="grep --color=always"
+    #alias egrep="egrep --color=always"
+    #alias dls="cd $HOME/Downloads"
+    #alias docs="cd $HOME/Documents"
+    #alias vimcfg="vim $HOME/dotfiles/vimrc"
+    #alias zshcfg="vim $HOME/dotfiles/zshrc"
+    #alias tmuxcfg="vim $HOME/dotfiles/tmux.conf"
+    #alias v="vim"
+    #alias g="git"
 
 ###########################################################################
 #  CUSTOM INSTALLATIONS 
