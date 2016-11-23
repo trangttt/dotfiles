@@ -47,6 +47,7 @@
     alias zshcfg="vim $HOME/dotfiles/zshrc"
     alias tmuxcfg="vim $HOME/dotfiles/tmux.conf"
     alias v="vim"
+    alias g="git"
 
 ###########################################################################
 #  CUSTOM INSTALLATIONS 
