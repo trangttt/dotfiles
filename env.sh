@@ -53,6 +53,6 @@
 #  CUSTOM INSTALLATIONS 
 ###########################################################################
     #Install ecd
-    #export ENHANCD_COMMAND=ecd 
-    #export ENHANCD_FILTER=fzy:percol
-    #source ~/Downloads/enhancd/init.sh
+    export ENHANCD_COMMAND=ecd 
+    export ENHANCD_FILTER=fzy:percol
+    source ~/Downloads/enhancd/init.sh
