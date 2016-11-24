@@ -28,6 +28,26 @@
     function mkcd() { mkdir -p "$@" && cd "$_" ; }
 
 
+    function _containsElement(){
+        local e
+        for e in "${@:2}" ;
+        do
+            [[ "$e" == "$1" ]] && return 0 ;
+        done
+        return 1
+    }
+
+    BREW_PATH="/usr/local/bin/brew" 
+    #Remind to update ansible if install new package
+    function brew() {
+        $BREW_PATH "$@"
+        if [ $? ] &&  _containsElement "install" "$@" ;
+        then
+            echo "**Install new package. Remember to update ANSIBLE.**"
+        fi
+    }
+
+
 ###########################################################################
 #  ALIASES 
 ###########################################################################

@@ -76,3 +76,8 @@ Thumbs.db
 *.bak
 *.swp
 
+
+#Git
+######################
+.gitignore
+.git
