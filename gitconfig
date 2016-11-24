@@ -1,0 +1,11 @@
+# This is Git's per-user configuration file.
+[github]
+    user=trangttt
+[core]
+	editor = vim
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	excludesfile = /Users/macbook/.gitignore_global
+[user]
+# Please adapt and uncomment the following lines:
+    name=trangttt
+    email=thuytranga1@yahoo.com
