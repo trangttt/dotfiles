@@ -139,7 +139,12 @@ let g:jedi#show_call_signatures = 1
 "Config vim to always follow symlink
 command! FollowSymlink call followsymlinks#FollowSymlink()
 command! ProjectRoot call projectroot#SetProjectRoot()
-autocmd! BufRead * silent! execute ':FollowSymlink'| silent! execute ':ProjectRoot' 
+
+"if ! exists("autocommands_loaded")
+    "let autocommands_loaded = 1
+autocmd! BufRead * execute ':FollowSymlink'| execute ':ProjectRoot' 
+"autocmd! BufRead * execute ':ProjectRoot'
+"endif 
 
 filetype plugin indent on
 syntax on
