@@ -66,9 +66,9 @@ Thumbs.db
 
 #Fonts
 ######################
-*.eot
-*.ttf
-*.woff
+#*.eot
+#*.ttf
+#*.woff
 
 
 #Backup

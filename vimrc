@@ -313,6 +313,10 @@ autocmd! BufWritePost ~/dotfiles/** silent execute
             \ '!echo "\n CONFIG file. Remember to PUSH to GITHUB" && sleep 1 '
             \ | execute ":redraw!"
 
+autocmd! BufWritePost *.wiki silent execute
+            \ '!echo "\nRemember to PUSH to GITHUB" && sleep 1'
+            \ | execute ":redraw!"
+
 
 """easymotion
 " Gif config
