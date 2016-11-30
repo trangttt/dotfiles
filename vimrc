@@ -1,3 +1,4 @@
+set clipboard=unnamed
 set nu
 set nocompatible
 filetype off
@@ -274,7 +275,7 @@ command! -nargs=1 Wc  | execute ':Gwrite'
                     \ | execute ':Gcommit -m '.<q-args> 
                     \ | execute ':redraw!'
 
-command! -nargs=1 Wp  | execute ':Gwrite'
+command! -nargs=1 Wcp  | execute ':Gwrite'
                     \ | execute ':Gcommit -m '.<q-args> 
                     \ | execute ':Gpush' 
                     \ | execute ':redraw!'
@@ -320,8 +321,8 @@ autocmd! BufWritePost *.wiki silent execute
 
 """easymotion
 " Gif config
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+map  // <Plug>(easymotion-sn)
+omap // <Plug>(easymotion-tn)
 
 " These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
 " Without these mappings, `n` & `N` works fine. (These mappings just provide
