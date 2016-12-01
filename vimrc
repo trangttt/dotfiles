@@ -321,8 +321,8 @@ autocmd! BufWritePost *.wiki silent execute
 
 """easymotion
 " Gif config
-map  // <Plug>(easymotion-sn)
-omap // <Plug>(easymotion-tn)
+map  <leader>/ <Plug>(easymotion-sn)
+omap <leader>/ <Plug>(easymotion-tn)
 
 " These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
 " Without these mappings, `n` & `N` works fine. (These mappings just provide
