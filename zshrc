@@ -107,3 +107,15 @@ powerline-daemon -q
 #export powerline_root=/Users/macbook/Library/Python/2.7/lib/python/site-packages
 #. ${powerline_root}/powerline/bindings/zsh/powerline.zsh
 
+
+export PYENV_ROOT="$HOME/.pyenv"
+
+# Add pyenv root to PATH
+# and initialize pyenv
+if [[ -d $PYENV_ROOT ]];then
+    PATH="$PYENV_ROOT/bin:$PATH"
+    # initialize pyenv
+    eval "$(pyenv init -)"
+    # initialize pyenv virtualenv
+    eval "$(pyenv virtualenv-init -)"
+fi

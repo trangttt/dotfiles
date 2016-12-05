@@ -330,4 +330,15 @@ omap <leader>/ <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
 
+"vimwiki
+let wiki_1 = {}
+let wiki_1.path = "~/vimwiki"
+let wiki_1.syntax = 'markdown' 
+let wiki_1.ext = '.md'
 
+let wiki_2 = {}
+let wiki_2.path = "~/notes"
+let wiki_2.syntax = 'markdown' 
+let wiki_2.ext = '.md'
+
+let g:vimwiki_list = [ wiki_1, wiki_2 ]
