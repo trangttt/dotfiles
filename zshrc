@@ -119,3 +119,5 @@ if [[ -d $PYENV_ROOT ]];then
     # initialize pyenv virtualenv
     eval "$(pyenv virtualenv-init -)"
 fi
+bindkey ^F forward-word
+bindkey ^B backward-word
