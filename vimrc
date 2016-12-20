@@ -10,13 +10,13 @@ call vundle#begin()
 "Plugin 'KeitaNakamura/neodark.vim'
 
 "utilities
-Plugin 'gmarik/Vundle.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Yggdroot/indentLine'
-Plugin 'scrooloose/syntastic'
-Plugin 'kien/ctrlp.vim'
+Plugin 'gmarik/Vundle.vim' "Plugin manager
+Plugin 'vim-airline/vim-airline' "Vim status
+Plugin 'scrooloose/nerdtree' "Directory explorer
+Plugin 'scrooloose/nerdcommenter' "Commenting
+Plugin 'Yggdroot/indentLine' "Showing same level indentation with a vertical line
+Plugin 'scrooloose/syntastic' "Syntax checking
+Plugin 'kien/ctrlp.vim' "Fuzzy file search
 Plugin 'ervandew/supertab'
 Plugin 'majutsushi/tagbar'
 Plugin 'christoomey/vim-run-interactive'
@@ -24,29 +24,30 @@ Plugin 'szw/vim-maximizer'
 Plugin 'vimwiki/vimwiki'
 
 "Moving
-Plugin 'easymotion/vim-easymotion'
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plugin 'easymotion/vim-easymotion' "Easy moving between line 
+Plugin 'jeffkreeftmeijer/vim-numbertoggle' "Toogle line number <F2>
 
 "Editing
 Plugin 'flazz/vim-colorschemes'
-Plugin 'godlygeek/tabular'
-Plugin 'tpope/vim-surround'
-Plugin 'jiangmiao/auto-pairs'
+Plugin 'godlygeek/tabular' "Tabularize text
+Plugin 'tpope/vim-surround' "Surrounding with brackets
+Plugin 'tpope/vim-repeat' "Allow to use . to repeat vim-surround
+Plugin 'jiangmiao/auto-pairs' "Auto insert closing bracket
 
 Plugin 'mtth/scratch.vim'  "Taking note
 
 "Git plugins
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'airblade/vim-gitgutter' "Show git status at left gutter
+Plugin 'tpope/vim-fugitive' "Git command line in vim
+Plugin 'Xuyuanp/nerdtree-git-plugin' "Git for nerdtree
 "Plugin 'peterhurford/send.vim'
 
 "Vim snippets
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'tomtom/tlib_vim'
 "Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets' "snippets for ultinips
+Plugin 'SirVer/ultisnips' "using snippets
 
 "Tmux
 Plugin 'benmills/vimux' "Communicate with tmux
@@ -66,7 +67,9 @@ Plugin 'slim-template/vim-slim.git'
 Plugin 'tfnico/vim-gradle'
 
 "Markdown
+"Plugin 'tpope/vim-markdown'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'nelstrom/vim-markdown-folding'
 
 "Bash writing
 "Plugin 'vim-scripts/bash-support.vim'
@@ -130,6 +133,8 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 " Don't autofold code
 let g:pymode_folding = 1
 
+"Autorun binding
+let g:pymode_run_bind = '<leader><leader>a'
 
 " Jedi - automatically starts the completion
 let g:jedi#popup_on_dot = 1
@@ -143,7 +148,7 @@ command! ProjectRoot call projectroot#SetProjectRoot()
 
 "if ! exists("autocommands_loaded")
     "let autocommands_loaded = 1
-autocmd! BufRead * execute ':FollowSymlink'| execute ':ProjectRoot' 
+autocmd! BufRead * execute ':FollowSymlink' | execute ':ProjectRoot' 
 "autocmd! BufRead * execute ':ProjectRoot'
 "endif 
 
@@ -264,7 +269,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsEditSplit="vertical"
 
 
-
 "Buffer mapping
 noremap <F7> :bprev<CR>
 noremap <F9> :bnext<CR>
@@ -335,6 +339,7 @@ let wiki_1 = {}
 let wiki_1.path = "~/vimwiki"
 let wiki_1.syntax = 'markdown' 
 let wiki_1.ext = '.md'
+"let wiki_1.nested_syntaxes = { 'python': 'python', 'java': 'java' } 
 
 let wiki_2 = {}
 let wiki_2.path = "~/notes"
@@ -342,3 +347,16 @@ let wiki_2.syntax = 'markdown'
 let wiki_2.ext = '.md'
 
 let g:vimwiki_list = [ wiki_1, wiki_2 ]
+let g:vimwiki_folding = 'expr'
+
+"command! SetVimwikiFiletype call setvimwikifiletype#SetFiletype()
+"autocmd! Filetype vimwiki execute ':SetVimwikiFiletype'
+"autocmd! BufEnter *.md execute '!echo "Set Foldmethod"' | execute ':set foldmethod=expr'
+"
+"
+"vim-markdown config
+let g:vim_markdown_folding_disabled = 0
+let g:vim_markdown_fenced_languages = ['c++=cpp', 'python=python', 'java=java'] "syntax highlighting in fenced code
+let g:vim_markdown_conceal = 0
+
+
