@@ -121,3 +121,10 @@ if [[ -d $PYENV_ROOT ]];then
 fi
 bindkey ^F forward-word
 bindkey ^B backward-word
+
+#Using C-X C-E to activate commandline-edit
+export VISUAL=vim
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+#bindkey "^X^E" edit-command-line
