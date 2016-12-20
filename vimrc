@@ -17,10 +17,10 @@ Plugin 'scrooloose/nerdcommenter' "Commenting
 Plugin 'Yggdroot/indentLine' "Showing same level indentation with a vertical line
 Plugin 'scrooloose/syntastic' "Syntax checking
 Plugin 'kien/ctrlp.vim' "Fuzzy file search
-Plugin 'ervandew/supertab'
-Plugin 'majutsushi/tagbar'
-Plugin 'christoomey/vim-run-interactive'
-Plugin 'szw/vim-maximizer'
+Plugin 'ervandew/supertab' "Using tab for ins-completion
+Plugin 'majutsushi/tagbar' " Display tags <F6>
+Plugin 'christoomey/vim-run-interactive' "Run interactive command <leader>ri
+Plugin 'szw/vim-maximizer' "Maximize window <F3>
 Plugin 'vimwiki/vimwiki'
 
 "Moving
@@ -262,8 +262,8 @@ nnoremap <leader>ri :RunInInteractiveShell<space>
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-f>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -331,8 +331,8 @@ omap <leader>/ <Plug>(easymotion-tn)
 " These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
 " Without these mappings, `n` & `N` works fine. (These mappings just provide
 " different highlight method and have some other features )
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
+map  <leader>n <Plug>(easymotion-next)
+map  <leader>N <Plug>(easymotion-prev)
 
 "vimwiki
 let wiki_1 = {}
@@ -359,4 +359,5 @@ let g:vim_markdown_folding_disabled = 0
 let g:vim_markdown_fenced_languages = ['c++=cpp', 'python=python', 'java=java'] "syntax highlighting in fenced code
 let g:vim_markdown_conceal = 0
 
-
+"Vim-maximizer
+let g:maximizer_set_default_mapping = 1
