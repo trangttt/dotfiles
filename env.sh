@@ -3,7 +3,7 @@
 #  EXPORTS 
 ###########################################################################
     # PATH evn
-    export PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/Library/Python/2.7/bin"
+    export PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/Library/Python/2.7/bin:$HOME/bin"
     export EDITOR=vim
     # export PYTHONPATH=$PYTHONPATH
     # export MANPATH="/usr/local/man:$MANPATH"
