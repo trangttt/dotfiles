@@ -1,38 +1,51 @@
-set clipboard=unnamed
+" macos vs linux clipboard
+if has("mac")
+  set clipboard+=unnamed
+else
+  set clipboard=unnamedplus
+endif
+
 set nu
+
 set nocompatible
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 "Theme
+Plugin 'flazz/vim-colorschemes'
 "Plugin 'tyrannicaltoucan/vim-quantum'
-"Plugin 'KeitaNakamura/neodark.vim'
+Plugin 'KeitaNakamura/neodark.vim'
 
 "utilities
 Plugin 'gmarik/Vundle.vim' "Plugin manager
 Plugin 'vim-airline/vim-airline' "Vim status
+Plugin 'xolox/vim-session' "Session management, SaveSession, OpenSession, CloseSession
 Plugin 'scrooloose/nerdtree' "Directory explorer
-Plugin 'scrooloose/nerdcommenter' "Commenting
 Plugin 'Yggdroot/indentLine' "Showing same level indentation with a vertical line
 Plugin 'scrooloose/syntastic' "Syntax checking
 Plugin 'kien/ctrlp.vim' "Fuzzy file search
 Plugin 'ervandew/supertab' "Using tab for ins-completion
 Plugin 'majutsushi/tagbar' " Display tags <F6>
+Plugin 'xolox/vim-misc' "Used for easytags
+Plugin 'xolox/vim-easytags' "Update tags
 Plugin 'christoomey/vim-run-interactive' "Run interactive command <leader>ri
 Plugin 'szw/vim-maximizer' "Maximize window <F3>
 Plugin 'vimwiki/vimwiki'
+Plugin 'vim-scripts/taglist.vim'
 
 "Moving
 Plugin 'easymotion/vim-easymotion' "Easy moving between line 
 Plugin 'jeffkreeftmeijer/vim-numbertoggle' "Toogle line number <F2>
+Plugin 'rhysd/clever-f.vim' "Using f or F to continue searching
 
 "Editing
-Plugin 'flazz/vim-colorschemes'
+Plugin 'sjl/gundo.vim'
 Plugin 'godlygeek/tabular' "Tabularize text
 Plugin 'tpope/vim-surround' "Surrounding with brackets
 Plugin 'tpope/vim-repeat' "Allow to use . to repeat vim-surround
 Plugin 'jiangmiao/auto-pairs' "Auto insert closing bracket
+Plugin 'scrooloose/nerdcommenter' "Commenting
 
 Plugin 'mtth/scratch.vim'  "Taking note
 
@@ -49,10 +62,14 @@ Plugin 'Xuyuanp/nerdtree-git-plugin' "Git for nerdtree
 Plugin 'honza/vim-snippets' "snippets for ultinips
 Plugin 'SirVer/ultisnips' "using snippets
 
+"Syntax highlight improvements
+Plugin 'dragfire/Improved-Syntax-Highlighting-Vim'
+
 "Tmux
 Plugin 'benmills/vimux' "Communicate with tmux
 Plugin 'christoomey/vim-tmux-navigator' "Enable moving between tmux - vim seamlessly
 Plugin 'tmux-plugins/vim-tmux-focus-events' "Re-enable FocusGained & FocusLost for vim in tmux
+Plugin 'tmux-plugins/vim-tmux' " .tmux.conf syntax
 
 "Focus vim
 "Plugin 'junegunn/goyo.vim'
@@ -64,6 +81,7 @@ Plugin 'davidhalter/jedi-vim' "Auto completion
 Plugin 'slim-template/vim-slim.git'
 
 "Java
+"Plugin 'adragomir/javacomplete' "Java completion
 Plugin 'tfnico/vim-gradle'
 
 "Markdown
@@ -86,7 +104,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 "Toggle NERDTree
-noremap <C-n> :NERDTreeToggle<CR>
+noremap <C-n> :NERDTree<CR>
 
 
 " PYTHON-MODE
@@ -154,7 +172,7 @@ autocmd! BufRead * execute ':FollowSymlink' | execute ':ProjectRoot'
 
 filetype plugin indent on
 syntax on
-color evening
+"color evening
 let mapleader = ','
 
 
@@ -220,8 +238,9 @@ let g:ctrlp_working_path_mode = 'c'
 
 
 "Configuration for javacomplete
-autocmd Filetype java setlocal omnifunc=javacomplete#Complete
-autocmd Filetype java map <leader>b: call javacomplete#GoToDefinition()<CR>
+"
+"autocmd Filetype java setlocal omnifunc=javacomplete#Complete
+"autocmd Filetype java map <leader>b: call javacomplete#GoToDefinition()<CR>
 
 "tagbar
 "Configuration for tagbar
@@ -243,7 +262,7 @@ noremap <Leader>rt :call VimuxRunCommand("python -m unittest " . bufname("%"))<C
  noremap <Leader>vp :VimuxPromptCommand<CR>
 
  " Run last command executed by VimuxRunCommand
- noremap <Leader>vl :VimuxRunLastCommand<CR>
+"noremap <Leader>vl :VimuxRunLastCommand<CR>
 
 " Interrupt any command running in the runner pane map
 noremap <Leader>vi :VimuxInterruptRunner<CR>
@@ -360,4 +379,81 @@ let g:vim_markdown_fenced_languages = ['c++=cpp', 'python=python', 'java=java'] 
 let g:vim_markdown_conceal = 0
 
 "Vim-maximizer
-let g:maximizer_set_default_mapping = 1
+let g:maximizer_set_default_mapping = 1 "Turn on default mapping key <F3>.
+
+"vim-easytags
+let g:easytags_dynamic_files = 2 "Trying to create tags file in current directory
+let g:easytags_auto_update = 0 "Disable automatic update
+autocmd Filetype python let b:easytags_events = ["BufWritePost"]
+"let g:easytags_events = ['BufWritePost'] "Trying to generate tags when write
+let g:easytags_include_members = 1
+set cpoptions+=d
+nmap <leader>ut :UpdateTags<CR>
+
+"vim-session
+"session management
+let g:session_directory = "~/.vim/session"
+let g:session_autoload = "no"
+let g:session_autosave = "no"
+let g:session_command_aliases = 1
+nnoremap <leader>so :OpenSession 
+nnoremap <leader>ss :SaveSession 
+nnoremap <leader>sd :DeleteSession<CR>
+nnoremap <leader>sc :CloseSession<CR>
+
+
+
+"Setting vim colorscheme
+" set Vim-specific sequences for RGB colors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+let g:neodark#background='gray'
+colorscheme neodark
+if !exists("termguicolors")
+    set termguicolors
+endif
+
+" enable mouse
+set mouse=a
+
+" show trailing whitespaces
+set list
+set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
+augroup ListChars2
+    au!
+    autocmd filetype go set listchars+=tab:\ \ 
+    autocmd ColorScheme * hi! link SpecialKey Normal
+augroup END
+
+" togglables without FN keys
+let g:gundo_prefer_python3 = 1
+nnoremap <leader>1 :GundoToggle<CR>
+set pastetoggle=<leader>2
+nnoremap <leader>3 :NERDTreeToggle<CR>
+nnoremap <leader>4 :TlistToggle<CR>
+nnoremap <leader>5 :TagbarToggle<CR>
+
+" persist (g)undo tree between sessions
+set undofile
+set history=100
+set undolevels=100
+
+" Keep search matches in the middle of the window.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+
+" airline
+if !exists("g:airline_symbols")
+  let g:airline_symbols = {}
+endif
+let g:airline_theme="powerlineish"
+let g:airline_powerline_fonts=1
+let g:airline#extensions#branch#empty_message  =  "no .git"
+let g:airline#extensions#whitespace#enabled    =  0
+let g:airline#extensions#syntastic#enabled     =  1
+let g:airline#extensions#tabline#enabled       =  1
+let g:airline#extensions#tabline#tab_nr_type   =  1 " tab number
+let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
+let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
