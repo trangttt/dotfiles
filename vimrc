@@ -1,4 +1,5 @@
 " macos vs linux clipboard
+ set autoread
 if has("mac")
   set clipboard+=unnamed
 else
@@ -16,6 +17,9 @@ call vundle#begin()
 Plugin 'flazz/vim-colorschemes'
 "Plugin 'tyrannicaltoucan/vim-quantum'
 Plugin 'KeitaNakamura/neodark.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'lifepillar/vim-solarized8'
+Plugin 'vim-airline/vim-airline-themes' "Theme for vimairline
 
 "utilities
 Plugin 'gmarik/Vundle.vim' "Plugin manager
@@ -31,11 +35,20 @@ Plugin 'xolox/vim-misc' "Used for easytags
 Plugin 'xolox/vim-easytags' "Update tags
 Plugin 'christoomey/vim-run-interactive' "Run interactive command <leader>ri
 Plugin 'szw/vim-maximizer' "Maximize window <F3>
-Plugin 'vimwiki/vimwiki'
 Plugin 'vim-scripts/taglist.vim'
 
+"Vim notes
+Plugin 'vimwiki/vimwiki'
+Plugin 'jceb/vim-orgmode'
+Plugin 'tpope/vim-speeddating' "Increase, decrease number, time
+Plugin 'dhruvasagar/vim-dotoo'
+Plugin 'chrisbra/NrrwRgn'
+Plugin 'mattn/calendar-vim'
+Plugin 'vim-scripts/SyntaxRange'
+Plugin 'vim-scripts/utl.vim'
+
 "Moving
-Plugin 'easymotion/vim-easymotion' "Easy moving between line 
+Plugin 'easymotion/vim-easymotion' "Easy moving between line
 Plugin 'jeffkreeftmeijer/vim-numbertoggle' "Toogle line number <F2>
 Plugin 'rhysd/clever-f.vim' "Using f or F to continue searching
 
@@ -135,6 +148,14 @@ let g:pymode_lint_checker = "pyflakes,pep8"
 " Auto check on save
 let g:pymode_lint_write = 1
 
+let g:pymode_lint_todo_symbol = 'TD'
+let g:pymode_lint_comment_symbol = 'CC'
+let g:pymode_lint_visual_symbol = 'RR'
+let g:pymode_lint_error_symbol = 'EE'
+let g:pymode_lint_info_symbol = 'II'
+let g:pymode_lint_pyflakes_symbol = 'FF'
+
+
 " Support virtualenv
 let g:pymode_virtualenv = 1
 
@@ -168,11 +189,10 @@ command! ProjectRoot call projectroot#SetProjectRoot()
     "let autocommands_loaded = 1
 autocmd! BufRead * execute ':FollowSymlink' | execute ':ProjectRoot' 
 "autocmd! BufRead * execute ':ProjectRoot'
-"endif 
+"endif
 
 filetype plugin indent on
 syntax on
-"color evening
 let mapleader = ','
 
 
@@ -226,10 +246,18 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+" ----- scrooloose/syntastic settings -----
+"syntastic symbols
+let g:syntastic_error_symbol = 'EE'
+let g:syntastic_warning_symbol = "WW"
+let g:syntastic_style_error_symbol = 'SE'
+let g:syntastic_style_warning_symbol = "SW"
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
 
 " Default mapping for CtrlP
 let g:ctrlp_map = '<c-p>'
@@ -404,12 +432,23 @@ nnoremap <leader>sc :CloseSession<CR>
 
 
 "Setting vim colorscheme
-" set Vim-specific sequences for RGB colors
+"set Vim-specific sequences for RGB colors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-let g:neodark#background='gray'
+set t_Co=256
+let g:neodark#terminal_transparent = 0
+let g:neodark#background           = 'brown'
 colorscheme neodark
+
+"set background=dark
+"let g:solarized_visibility = "high"
+"let g:solarized_contrast   = "high"
+"let g:solarized_termcolors = 16
+"let g:solarized_termtrans  = 1
+"colorscheme solarized
+"colorscheme solarized8_dark
+
 if !exists("termguicolors")
     set termguicolors
 endif
@@ -444,6 +483,8 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 
+"Delete buffer
+nnoremap <leader>bd :$bd<CR>
 " airline
 if !exists("g:airline_symbols")
   let g:airline_symbols = {}
@@ -451,9 +492,37 @@ endif
 let g:airline_theme="powerlineish"
 let g:airline_powerline_fonts=1
 let g:airline#extensions#branch#empty_message  =  "no .git"
-let g:airline#extensions#whitespace#enabled    =  0
-let g:airline#extensions#syntastic#enabled     =  1
-let g:airline#extensions#tabline#enabled       =  1
-let g:airline#extensions#tabline#tab_nr_type   =  1 " tab number
-let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
-let g:airline#extensions#hunks#non_zero_only   =  0 " git gutter
+let g:airline#extensions#whitespace#enabled    =  1 "Enable detection of whitespace error.
+let g:airline#extensions#syntastic#enabled     =  1 "Enable syntastic integration
+let g:airline#extensions#tagbar#enabled        =  1 "Enable tagbar integration
+let g:airline#extensions#tabline#enabled       =  1 "Enable tabline
+let g:airline#extensions#tabline#tab_nr_type   =  1 " enable/disable displaying tab number in tabs mode.
+"let g:airline#extensions#tabline#fnamemod      = ':.' "Reduce filename relative to current directory
+let g:airline#extensions#tabline#fnamecollapse =  0 " collapsing parent directories in buffer name
+let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
+
+let g:SuperTabDefaultCompletionType = 'context'
+let g:EclimCompletionMethod = 'omnifunc'
+let g:EclimJavaCompleteCaseSensitive = 1
+
+
+let g:org_agenda_files = [ '~/org/index.org', '~/org/personal.org' ]
+
+command! Ev :e ~/.vimrc
+command! Et :e ~/.tmux.conf
+command! Ez :e ~/.zshrc
+
+let g:AutoPairsMapCh=0
+
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <ctrl-\> :TmuxNavigatePrevious<cr>
+"Fixing nvim <c-h> recognized as <BS>
+if has("nvim")
+    nmap <BS> :<C-u>TmuxNavigateLeft<CR>
+endif
+

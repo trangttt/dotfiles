@@ -11,6 +11,7 @@ export ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="ys"
 POWERLEVEL9K_MODE='awsome-patched'
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+#POWERLEVEL9K_COLOR_SCHEME='light'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history virtualenv)
@@ -126,5 +127,7 @@ bindkey ^B backward-word
 export VISUAL=vim
 autoload -z edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
+#bindkey -M vicmd v edit-command-line
 #bindkey "^X^E" edit-command-line
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
