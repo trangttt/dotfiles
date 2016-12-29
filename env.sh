@@ -54,6 +54,7 @@
     alias cppcompile='c++ -std=c++11 -stdlib=libc++'
 
     # Use vim for editing config files
+    alias vim='nvim'
     alias zshcfg="vim ~/.zshrc"
     alias envcfg="vim ~/Projects/config/env.sh"
     alias rm='rm -i'

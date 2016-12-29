@@ -525,4 +525,3 @@ nnoremap <silent> <ctrl-\> :TmuxNavigatePrevious<cr>
 if has("nvim")
     nmap <BS> :<C-u>TmuxNavigateLeft<CR>
 endif
-
