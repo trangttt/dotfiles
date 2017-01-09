@@ -386,12 +386,13 @@ let wiki_1 = {}
 let wiki_1.path = "~/vimwiki"
 let wiki_1.syntax = 'markdown' 
 let wiki_1.ext = '.md'
-"let wiki_1.nested_syntaxes = { 'python': 'python', 'java': 'java' } 
+let wiki_1.nested_syntaxes = { 'python': 'python', 'java': 'java' } 
 
 let wiki_2 = {}
 let wiki_2.path = "~/notes"
 let wiki_2.syntax = 'markdown' 
 let wiki_2.ext = '.md'
+let wiki_2.nested_syntaxes = { 'python': 'python', 'java': 'java' } 
 
 let g:vimwiki_list = [ wiki_1, wiki_2 ]
 let g:vimwiki_folding = 'expr'
@@ -405,6 +406,8 @@ let g:vimwiki_folding = 'expr'
 let g:vim_markdown_folding_disabled = 0
 let g:vim_markdown_fenced_languages = ['c++=cpp', 'python=python', 'java=java'] "syntax highlighting in fenced code
 let g:vim_markdown_conceal = 0
+let g:vim_markdown_folding_style_pythonic = 1
+
 
 "Vim-maximizer
 let g:maximizer_set_default_mapping = 1 "Turn on default mapping key <F3>.

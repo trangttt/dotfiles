@@ -16,7 +16,7 @@ values."
    ;; and `nil'. `unused' will lazy install only unused layers (i.e. layers
    ;; not listed in variable `dotspacemacs-configuration-layers'), `all' will
    ;; lazy install any layer that support lazy installation even the layers
-   ;; listed in `dotspacemacs-configuration-layers'. `nil' disable the lazy
+   ;   ; listed in `dotspacemacs-configuration-layers'. `nil' disable    the lazy
    ;; installation feature and you have to explicitly list a layer in the
    ;; variable `dotspacemacs-configuration-layers' to install it.
    ;; (default 'unused)
@@ -54,7 +54,9 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      org-gcal ;orgmode - google calendar
+                                      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -127,7 +129,11 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light)
+                         spacemacs-light
+                         solarized-dark
+                         solarized-light
+                         monokai
+                         )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -299,18 +305,104 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (setq org-directory "~/org")
+  (setq org-default-notes-file "~/org/refile.org")
+  (setq org-archive-files (list "~/org/archive.org"))
+
+    ;; Todo configurations
+  (setq org-use-fast-todo-selection t)
   (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-                (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING"))))
+                (sequence "STARTED(s@/!)" "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING" "DEFFERED(f@/!)"))))
   (setq org-todo-state-tags-triggers
         (quote (("CANCELLED" ("CANCELLED" . t))
                 ("WAITING" ("WAITING" . t))
                 ("HOLD" ("WAITING") ("HOLD" . t))
                 (done ("WAITING") ("HOLD"))
                 ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
-                ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
-                ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
-  )
+                ("NEXT" ("WAITING") ("CANCELLED") ("HOLD")) 
+                ("DONE" ("WAITING") ("CANCELLED") ("HOLD"))
+                ("DEFFERED" ("WAITING") ("CANCELLED") ("HOLD")))))
+  ;; i use c-c c to start capture mode
+  (global-set-key (kbd "C-c c") 'org-capture)
+
+
+  ;; capture templates for: todo tasks, notes, appointments, phone calls, meetings, and org-protocol
+  (setq org-capture-templates
+        (quote (("t" "todo" entry (file org-default-notes-file)
+                "* todo %?\n%u\n%a\n" :clock-in t :clock-resume t)
+                ("r" "respond" entry (file org-default-notes-file)
+                "* next respond to %:from on %:subject\nscheduled: %t\n%u\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
+                ("n" "note" entry (file org-default-notes-file)
+                "* %? :note:\n%u\n%a\n" :clock-in t :clock-resume t)
+                ("j" "journal" entry (file+datetree "~/org/diary.org")
+                "* %?\n%u\n" :clock-in t :clock-resume t)
+                ("w" "org-protocol" entry (file org-default-notes-file)
+                "* todo review %c\n%u\n" :immediate-finish t)
+                ("i" "idea" entry (file org-default-notes-file)
+                 "* %? :IDEA:\n%U\n%a\n")
+                ("n" "note" entry (file org-default-notes-file)
+                 "* %? :NOTE:\n%U\n%a\n")
+                ("m" "meeting" entry (file org-default-notes-file)
+                "* meeting with %? :meeting:\n%u" :clock-in t :clock-resume t)
+                ("p" "phone call" entry (file org-default-notes-file)
+                "* phone %? :phone:\n%u" :clock-in t :clock-resume t)
+                ("h" "habit" entry (file org-default-notes-file)
+                "* next %?\n%u\n%a\nscheduled: %(format-time-string \"%<<%y-%m-%d %a .+1d/3d>>\")\n:properties:\n:style: habit\n:repeat_to_state: next\n:end:\n"))))
+
+  ;; tags
+  ;; Tags with fast selection keys
+  (setq org-tag-alist (quote ((:startgroup)
+                              ("@errand" . ?e)
+                              ("@office" . ?o)
+                              ("@home" . ?h)
+                              (:endgroup)
+                              ;;("WAITING" . ?w)
+                              ;;("HOLD" . ?h)
+                              ("IDEA" . ?i)
+                              ("HEALTH" . ?H)
+                              ("PERSONAL" . ?P)
+                              ;;("DRAFT" . ?D)
+                              ("WORK" . ?W)
+                              ("BOOKS" . ?b)
+                              ("STUDY" . ?s)
+                              ("NOTE" . ?n)
+                              ;;("CANCELLED" . ?c)
+                              ("HABITS" . ?a))))
+  ;; set org-agenda default view for a day
+  (setq org-agenda-span 'day)
+
+  ;; remove empty logbook drawers on clock out
+  (defun bh/remove-empty-drawer-on-clock-out ()
+    (interactive)
+    (save-excursion
+      (beginning-of-line 0)
+      (org-remove-empty-drawer-at "logbook" (point))))
+
+  (add-hook 'org-clock-out-hook 'bh/remove-empty-drawer-on-clock-out 'append)
+
+  (add-to-list 'org-modules 'org-habit t)
+  (setq org-agenda-custom-commands
+        '(("h" "Daily habits" 
+           ((agenda ""))
+           ((org-agenda-show-log t)
+            (org-agenda-ndays 7)
+            (org-agenda-log-mode-items '(state))
+            (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp ":habits:"))))
+          ;; other commands here
+          ))
+
+  (defun my-org-archive-done-tasks ()
+    (interactive)
+    (org-map-entries 'org-archive-subtree "/DONE" 'file))
+
+  (require 'org-gcal)
+  (setq org-gcal-client-id "260155739159-ugfhpuue0s4gc3je18nnbnu654hbtc78.apps.googleusercontent.com"
+        org-gcal-client-secret "AHAgqpBkYXs7MncwxBtl939r"
+        org-gcal-file-alist '(("thuytranga1@gmail.com" .  "~/org/google_calendar.org")
+                              ;;("en.vietnamese#holiday@group.v.calendar.google.com" .  "~/org/vn_holidays.org")
+                              ))
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -319,12 +411,81 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/org/personal"
-                            "~/org/work"
-                            "~/org")))
+ '(ansi-color-names-vector
+   ["#073642" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#657b83"])
+ '(compilation-message-face (quote default))
+ '(cua-global-mark-cursor-color "#2aa198")
+ '(cua-normal-cursor-color "#839496")
+ '(cua-overwrite-cursor-color "#b58900")
+ '(cua-read-only-cursor-color "#859900")
+ '(evil-want-Y-yank-to-eol nil)
+ '(fci-rule-color "#073642" t)
+ '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
+ '(highlight-symbol-colors
+   (--map
+    (solarized-color-blend it "#002b36" 0.25)
+    (quote
+     ("#b58900" "#2aa198" "#dc322f" "#6c71c4" "#859900" "#cb4b16" "#268bd2"))))
+ '(highlight-symbol-foreground-color "#93a1a1")
+ '(highlight-tail-colors
+   (quote
+    (("#073642" . 0)
+     ("#546E00" . 20)
+     ("#00736F" . 30)
+     ("#00629D" . 50)
+     ("#7B6000" . 60)
+     ("#8B2C02" . 70)
+     ("#93115C" . 85)
+     ("#073642" . 100))))
+ '(hl-bg-colors
+   (quote
+    ("#7B6000" "#8B2C02" "#990A1B" "#93115C" "#3F4D91" "#00629D" "#00736F" "#546E00")))
+ '(hl-fg-colors
+   (quote
+    ("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36")))
+ '(magit-diff-use-overlays nil)
+ '(nrepl-message-colors
+   (quote
+    ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
+ '(org-agenda-files (quote ("~/org/personal" "~/org/work" "~/org")))
  '(package-selected-packages
    (quote
-    (org-projectile org-present org org-pomodoro alert log4e gntp org-download htmlize helm-company helm-c-yasnippet gnuplot flycheck-pos-tip pos-tip flycheck company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme))))
+    (org-gcal request-deferred deferred monokai-theme solaried-light-theme solarized-theme org-projectile org-present org org-pomodoro alert log4e gntp org-download htmlize helm-company helm-c-yasnippet gnuplot flycheck-pos-tip pos-tip flycheck company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme)))
+ '(pos-tip-background-color "#073642")
+ '(pos-tip-foreground-color "#93a1a1")
+ '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
+ '(term-default-bg-color "#002b36")
+ '(term-default-fg-color "#839496")
+ '(vc-annotate-background nil)
+ '(vc-annotate-background-mode nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#dc322f")
+     (40 . "#c85d17")
+     (60 . "#be730b")
+     (80 . "#b58900")
+     (100 . "#a58e00")
+     (120 . "#9d9100")
+     (140 . "#959300")
+     (160 . "#8d9600")
+     (180 . "#859900")
+     (200 . "#669b32")
+     (220 . "#579d4c")
+     (240 . "#489e65")
+     (260 . "#399f7e")
+     (280 . "#2aa198")
+     (300 . "#2898af")
+     (320 . "#2793ba")
+     (340 . "#268fc6")
+     (360 . "#268bd2"))))
+ '(vc-annotate-very-old-color nil)
+ '(weechat-color-list
+   (quote
+    (unspecified "#002b36" "#073642" "#990A1B" "#dc322f" "#546E00" "#859900" "#7B6000" "#b58900" "#00629D" "#268bd2" "#93115C" "#d33682" "#00736F" "#2aa198" "#839496" "#657b83")))
+ '(xterm-color-names
+   ["#073642" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#eee8d5"])
+ '(xterm-color-names-bright
+   ["#002b36" "#cb4b16" "#586e75" "#657b83" "#839496" "#6c71c4" "#93a1a1" "#fdf6e3"]))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
