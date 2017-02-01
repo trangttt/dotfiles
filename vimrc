@@ -1,4 +1,4 @@
-" macos vs linux clipboard
+"macos vs linux clipboard
  set autoread
 if has("mac")
   set clipboard+=unnamed
@@ -187,7 +187,7 @@ command! ProjectRoot call projectroot#SetProjectRoot()
 
 "if ! exists("autocommands_loaded")
     "let autocommands_loaded = 1
-autocmd! BufRead * execute ':FollowSymlink' | execute ':ProjectRoot' 
+"autocmd! BufRead * execute ':FollowSymlink' | execute ':ProjectRoot' 
 "autocmd! BufRead * execute ':ProjectRoot'
 "endif
 
@@ -531,3 +531,8 @@ endif
 
 "This unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
+
+"Snippets info
+let g:snips_author="Trang Tran Thi Thuy"
+let g:snips_email="thuytranga1@gmail.com"
+let g:snips_github="https://github.com/trangttt"
