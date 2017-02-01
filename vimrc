@@ -1,6 +1,5 @@
 """ macos vs linux clipboard
 set autoread
-
 if has("mac")
   set clipboard+=unnamed
 else
@@ -569,3 +568,4 @@ endif
 let g:snips_author="Trang Tran Thi Thuy"
 let g:snips_email="thuytranga1@gmail.com"
 let g:snips_github="https://github.com/trangttt"
+
