@@ -117,7 +117,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 "Toggle NERDTree
-noremap <C-n> :NERDTree<CR>
+"noremap <C-n> :NERDTree<CR>
 
 
 " PYTHON-MODE
@@ -136,12 +136,16 @@ noremap <C-n> :NERDTree<CR>
 " [M            Jump on previous class or method (normal, visual, operator
 " modes)
 " ]M            Jump on next class or method (normal, visual, operator modes)
-let g:pymode_rope = 0
+let g:pymode_rope = 1
+let g:pymode_rope_autoimport=1
+"let g:pymode_rope_regenerate_on_write=1
 
 " Documentation
 "let g:pymode_doc = 1
 "let g:pymode_doc_key = 'K'
 
+"Syntax checking
+let g:pymode_python = 'python3' 
 "Linting
 let g:pymode_lint = 1
 let g:pymode_lint_checker = "pyflakes,pep8"
@@ -309,12 +313,14 @@ nnoremap <leader>ri :RunInInteractiveShell<space>
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
+let g:UltiSnipsSnippetsDir = "~/.vim/mysnippets"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
+let g:UltiSnipsEditSplit = 'normal'
 
 "Buffer mapping
 noremap <F7> :bprev<CR>
@@ -531,3 +537,5 @@ endif
 
 "This unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
+
+
