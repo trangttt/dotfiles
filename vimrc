@@ -39,7 +39,7 @@ Plugin 'szw/vim-maximizer' "Maximize window <F3>
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'dkprice/vim-easygrep'
 
-""""" Vim notes
+"""" Vim notes
 Plugin 'vimwiki/vimwiki'
 Plugin 'jceb/vim-orgmode'
 Plugin 'tpope/vim-speeddating' "Increase, decrease number, time
@@ -50,12 +50,12 @@ Plugin 'vim-scripts/SyntaxRange'
 Plugin 'vim-scripts/utl.vim'
 Plugin 'Rykka/riv.vim'
 
-"Moving
+"""" Moving
 Plugin 'easymotion/vim-easymotion' "Easy moving between line
 Plugin 'jeffkreeftmeijer/vim-numbertoggle' "Toogle line number <F2>
 Plugin 'rhysd/clever-f.vim' "Using f or F to continue searching
 
-"Editing
+"""" Editing
 Plugin 'sjl/gundo.vim'
 Plugin 'godlygeek/tabular' "Tabularize text
 Plugin 'tpope/vim-surround' "Surrounding with brackets
@@ -65,23 +65,23 @@ Plugin 'scrooloose/nerdcommenter' "Commenting
 
 Plugin 'mtth/scratch.vim'  "Taking note
 
-"Git plugins
+"""" Git plugins
 Plugin 'airblade/vim-gitgutter' "Show git status at left gutter
 Plugin 'tpope/vim-fugitive' "Git command line in vim
 Plugin 'Xuyuanp/nerdtree-git-plugin' "Git for nerdtree
 "Plugin 'peterhurford/send.vim'
 
-"Vim snippets
+"""" Vim snippets
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'tomtom/tlib_vim'
 "Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets' "snippets for ultinips
 Plugin 'SirVer/ultisnips' "using snippets
 
-"Syntax highlight improvements
+"""" Syntax highlight improvements
 Plugin 'dragfire/Improved-Syntax-Highlighting-Vim'
 
-"Tmux
+"""" Tmux
 Plugin 'benmills/vimux' "Communicate with tmux
 Plugin 'christoomey/vim-tmux-navigator' "Enable moving between tmux - vim seamlessly
 Plugin 'tmux-plugins/vim-tmux-focus-events' "Re-enable FocusGained & FocusLost for vim in tmux
@@ -90,7 +90,7 @@ Plugin 'tmux-plugins/vim-tmux' " .tmux.conf syntax
 "Focus vim
 "Plugin 'junegunn/goyo.vim'
 
-"Python
+"""" Python
 Plugin 'klen/python-mode'
 Plugin 'pitluga/vimux-nose-test' "Running nose in tmux
 Plugin 'davidhalter/jedi-vim' "Auto completion
@@ -101,12 +101,12 @@ Plugin 'fs111/pydoc.vim' "Integrate python documents to vim
 Plugin 'vim-scripts/python_match.vim' "Jumping between if/else try/catch for/while using %
 "Plugin 'tmhedberg/matchit'
 
-"Java
+"""" Java
 "Plugin 'adragomir/javacomplete' "Java completion
 Plugin 'tfnico/vim-gradle'
 Plugin 'tpope/vim-dispatch' "Dispatch make command
 
-"Markdown
+"""" Markdown
 "Plugin 'tpope/vim-markdown'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'nelstrom/vim-markdown-folding'
@@ -118,6 +118,7 @@ Plugin 'nelstrom/vim-markdown-folding'
 "Plugin 'tmux-plugins/vim-tmux'
 call vundle#end()
 
+""" Vim airline
 "Fix error: vim-airline - Display even with ONLY 1 window
 set laststatus=2
 " Enable the list of buffers
@@ -125,11 +126,12 @@ let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+"""  NERDTree
 "Toggle NERDTree
 "noremap <C-n> :NERDTree<CR>
 
 
-" PYTHON-MODE
+""" PYTHON-MODE
 " Deacctivate rope
 " Keys:
 " K             Show python docs
@@ -196,7 +198,7 @@ let g:pymode_run_bind = '<leader><leader>a'
 "Jedi - show call signature
 let g:jedi#show_call_signatures = 1
 
-"Config vim to always follow symlink
+"""Config vim to always follow symlink
 command! FollowSymlink call followsymlinks#FollowSymlink()
 command! ProjectRoot call projectroot#SetProjectRoot()
 
@@ -211,13 +213,13 @@ syntax on
 let mapleader = ','
 
 
-"Moving between spanes smoothly
+""" Replaced. Tmux-navigator Moving between spanes smoothly
 "let g:BASH_Ctrl_j = 'off' "Turn this on to avoid conflict with bash_support
-noremap <C-j> <C-w><C-j>
-noremap <C-k> <C-w><C-k>
-noremap <C-l> <C-w><C-l>
-noremap <C-h> <C-w><C-h>
-noremap <C-\> <C-w><C-\\>
+"noremap <C-j> <C-w><C-j>
+"noremap <C-k> <C-w><C-k>
+"noremap <C-l> <C-w><C-l>
+"noremap <C-h> <C-w><C-h>
+"noremap <C-\> <C-w><C-\\>
 
 "Moving from vim to tmux
 let g:tmux_navigator_no_mappings = 1
@@ -229,6 +231,7 @@ noremap <silent> <C-l> :TmuxNavigateRight<cr>
 noremap <silent> <C-\\> :TmuxNavigatePrevious<cr>
 
 
+""" MISCELLANEOUS
 "Use <leader>l to toggle display of whitespace
 nnoremap <leader>l :set list!<CR>
 
@@ -256,12 +259,12 @@ set showmatch
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
 
+""" ----- scrooloose/syntastic settings -----
 " Default for SYNTACTIC plugin - python
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-" ----- scrooloose/syntastic settings -----
 "syntastic symbols
 let g:syntastic_error_symbol = 'EE'
 let g:syntastic_warning_symbol = "WW"
@@ -274,29 +277,25 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 
-" Default mapping for CtrlP
+""" CtrlP
+"Default mapping for CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'c'
 
 
-"Configuration for javacomplete
+"""Configuration for javacomplete
 "
 "autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 "autocmd Filetype java map <leader>b: call javacomplete#GoToDefinition()<CR>
 
-"tagbar
-"Configuration for tagbar
-nnoremap <F6> :TagbarToggle<CR>
 
-"Scratch
+"""Scratch
 "autohide
 let g:scratch_autohide = 1
 
 
-""""""""""""""
-"VIMUX shortcut
-"""""""""""""""
+"""VIMUX shortcut
 "
 "Running python test
 noremap <Leader>rt :call VimuxRunCommand("python -m unittest " . bufname("%"))<CR>
@@ -305,22 +304,21 @@ noremap <Leader>rt :call VimuxRunCommand("python -m unittest " . bufname("%"))<C
  noremap <Leader>vp :VimuxPromptCommand<CR>
 
  " Run last command executed by VimuxRunCommand
-"noremap <Leader>vl :VimuxRunLastCommand<CR>
+noremap <Leader>vl :VimuxRunLastCommand<CR>
 
 " Interrupt any command running in the runner pane map
 noremap <Leader>vi :VimuxInterruptRunner<CR>
 
-"""""""""""""""""""
- "Toogle Relative Number between Absolute Line Number
+ """Toogle Relative Number between Absolute Line Number
 let g:UseNumberToggleTrigger = 1 
 let g:NumberToggleTrigger="<F2>"
 
 
-"""""""Shortcut for RunInteractiveShel""""""
+"""Shortcut for RunInteractiveShel
 nnoremap <leader>ri :RunInInteractiveShell<space>
 
 
-"Trigger ultisnips"""""
+"""Trigger ultisnips
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -333,12 +331,12 @@ let g:UltiSnipsSnippetsDir = "~/.vim/mysnippets"
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 let g:UltiSnipsEditSplit = 'normal'
 
-"Buffer mapping
+"""Buffer mapping
 noremap <F7> :bprev<CR>
 noremap <F9> :bnext<CR>
 noremap <F8> :buffers<CR>
 
-"Command 
+"""Command 
 command! -nargs=1 Wc  | execute ':Gwrite'
                     \ | execute ':Gcommit -m '.<q-args> 
                     \ | execute ':redraw!'
@@ -387,7 +385,7 @@ autocmd! BufWritePost *.wiki silent execute
             \ | execute ":redraw!"
 
 
-"" easymotion
+""" easymotion
 " Gif config
 map  <leader>/ <Plug>(easymotion-sn)
 omap <leader>/ <Plug>(easymotion-tn)
@@ -398,7 +396,7 @@ omap <leader>/ <Plug>(easymotion-tn)
 map  <leader>n <Plug>(easymotion-next)
 map  <leader>N <Plug>(easymotion-prev)
 
-"" vimwiki
+""" vimwiki
 let wiki_1 = {}
 let wiki_1.path = "~/vimwiki"
 let wiki_1.syntax = 'markdown' 
@@ -420,14 +418,14 @@ let g:vimwiki_folding = 'expr'
 "
 "
 
-"" vim-markdown config
+""" vim-markdown config
 let g:vim_markdown_folding_disabled = 0
 let g:vim_markdown_fenced_languages = ['c++=cpp', 'python=python', 'java=java'] "syntax highlighting in fenced code
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_folding_style_pythonic = 1
 
 
-"Vim-maximizer
+"""Vim-maximizer
 let g:maximizer_set_default_mapping = 1 "Turn on default mapping key <F3>.
 
 "vim-easytags
@@ -439,7 +437,7 @@ let g:easytags_include_members = 1
 set cpoptions+=d
 nmap <leader>ut :UpdateTags<CR>
 
-"vim-session
+"""vim-session
 "session management
 let g:session_directory = "~/.vim/session"
 let g:session_autoload = "no"
@@ -452,7 +450,7 @@ nnoremap <leader>sc :CloseSession<CR>
 
 
 
-"Setting vim colorscheme
+"""Setting vim colorscheme
 "set Vim-specific sequences for RGB colors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -486,7 +484,7 @@ augroup ListChars2
     autocmd ColorScheme * hi! link SpecialKey Normal
 augroup END
 
-" togglables without FN keys
+""" togglables without FN keys
 let g:gundo_prefer_python3 = 1
 nnoremap <leader>1 :GundoToggle<CR>
 set pastetoggle=<leader>2
@@ -504,11 +502,11 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 
-"Delete buffer
+"""Delete buffer
 nnoremap <leader>bd :$bd<CR>
 nnoremap <leader><leader>bd :bd<cr>
 
-" airline
+""" airline
 if !exists("g:airline_symbols")
   let g:airline_symbols = {}
 endif
@@ -529,14 +527,16 @@ let g:EclimCompletionMethod = 'omnifunc'
 let g:EclimJavaCompleteCaseSensitive = 1
 
 
-let g:org_agenda_files = [ '~/org/index.org', '~/org/personal.org' ]
+"let g:org_agenda_files = [ '~/org/index.org', '~/org/personal.org' ]
 
+""" Command to move quickly to config files
 command! Ev :e ~/.vimrc
 command! Et :e ~/.tmux.conf
 command! Ez :e ~/.zshrc
 
 let g:AutoPairsMapCh=0
 
+""" Tmux Navigation
 let g:tmux_navigator_no_mappings = 1
 
 nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
@@ -552,12 +552,12 @@ endif
 "This unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
 
-"Snippets info
+"""Snippets info
 let g:snips_author="Trang Tran Thi Thuy"
 let g:snips_email="thuytranga1@gmail.com"
 let g:snips_github="https://github.com/trangttt"
 
-"Pydoc
+"""Pydoc
 let g:pydoc_cmd='python -m pydoc'
 
 if strftime("%H") < 18 
