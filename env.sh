@@ -78,3 +78,11 @@
     export ENHANCD_COMMAND=ecd 
     export ENHANCD_FILTER=fzy:percol
     source ~/Downloads/enhancd/init.sh
+
+    export PASSWORD_STORE_DIR="$HOME/Dropbox/pass" 
+    export GNUPGHOME="$HOME/Dropbox/gpg" 
+    export GPGKEY="96A5C19D"
+    
+    export ECLIPSE_HOME="/Applications/Eclipse.app/Contents/Eclipse/"
+    ##autoenv
+    source $(brew --prefix autoenv)/activate.sh

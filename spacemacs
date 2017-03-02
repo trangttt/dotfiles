@@ -55,7 +55,7 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
-                                      org-gcal ;orgmode - google calendar
+                                      org-gcal
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -208,7 +208,8 @@ values."
    ;; in all non-asynchronous sources. If set to `source', preserve individual
    ;; source settings. Else, disable fuzzy matching in all sources.
    ;; (default 'always)
-   dotspacemacs-helm-use-fuzzy 'always
+   ;;dotspacemacs-helm-use-fuzzy 'always
+   dotspacemacs-helm-use-fuzzy 'source
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
    dotspacemacs-enable-paste-transient-state nil
@@ -309,6 +310,12 @@ you should place your code here."
   (setq org-default-notes-file "~/org/refile.org")
   (setq org-archive-files (list "~/org/archive.org"))
 
+    ;; window switching key map
+  (define-key evil-normal-state-map (kbd "C-h") #'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-j") #'evil-window-down)
+  (define-key evil-normal-state-map (kbd "C-k") #'evil-window-up)
+  (define-key evil-normal-state-map (kbd "C-l") #'evil-window-right)
+
     ;; Todo configurations
   (setq org-use-fast-todo-selection t)
   (setq org-todo-keywords
@@ -381,7 +388,8 @@ you should place your code here."
 
   (add-hook 'org-clock-out-hook 'bh/remove-empty-drawer-on-clock-out 'append)
 
-  (add-to-list 'org-modules 'org-habit t)
+  ;;(add-to-list 'org-modules 'org-habit t)
+  (require 'org-habit)
   (setq org-agenda-custom-commands
         '(("h" "Daily habits" 
            ((agenda ""))

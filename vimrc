@@ -1,4 +1,4 @@
-" macos vs linux clipboard
+""" macos vs linux clipboard
  set autoread
 if has("mac")
   set clipboard+=unnamed
@@ -11,9 +11,10 @@ set nu
 set nocompatible
 filetype off
 
+""" Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-"Theme
+"""" Theme
 Plugin 'flazz/vim-colorschemes'
 "Plugin 'tyrannicaltoucan/vim-quantum'
 Plugin 'KeitaNakamura/neodark.vim'
@@ -21,7 +22,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'lifepillar/vim-solarized8'
 Plugin 'vim-airline/vim-airline-themes' "Theme for vimairline
 
-"utilities
+"""" utilities
 Plugin 'gmarik/Vundle.vim' "Plugin manager
 Plugin 'vim-airline/vim-airline' "Vim status
 Plugin 'xolox/vim-session' "Session management, SaveSession, OpenSession, CloseSession
@@ -36,8 +37,9 @@ Plugin 'xolox/vim-easytags' "Update tags
 Plugin 'christoomey/vim-run-interactive' "Run interactive command <leader>ri
 Plugin 'szw/vim-maximizer' "Maximize window <F3>
 Plugin 'vim-scripts/taglist.vim'
+Plugin 'dkprice/vim-easygrep'
 
-"Vim notes
+""""" Vim notes
 Plugin 'vimwiki/vimwiki'
 Plugin 'jceb/vim-orgmode'
 Plugin 'tpope/vim-speeddating' "Increase, decrease number, time
@@ -46,6 +48,7 @@ Plugin 'chrisbra/NrrwRgn'
 Plugin 'mattn/calendar-vim'
 Plugin 'vim-scripts/SyntaxRange'
 Plugin 'vim-scripts/utl.vim'
+Plugin 'Rykka/riv.vim'
 
 "Moving
 Plugin 'easymotion/vim-easymotion' "Easy moving between line
@@ -92,10 +95,16 @@ Plugin 'klen/python-mode'
 Plugin 'pitluga/vimux-nose-test' "Running nose in tmux
 Plugin 'davidhalter/jedi-vim' "Auto completion
 Plugin 'slim-template/vim-slim.git'
+Plugin 'vim-scripts/django.vim' "Django html syntax filetype htmldjango
+Plugin 'jmcomets/vim-pony' "Quickly jump between Django files
+Plugin 'fs111/pydoc.vim' "Integrate python documents to vim
+Plugin 'vim-scripts/python_match.vim' "Jumping between if/else try/catch for/while using %
+"Plugin 'tmhedberg/matchit'
 
 "Java
 "Plugin 'adragomir/javacomplete' "Java completion
 Plugin 'tfnico/vim-gradle'
+Plugin 'tpope/vim-dispatch' "Dispatch make command
 
 "Markdown
 "Plugin 'tpope/vim-markdown'
@@ -137,11 +146,13 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " modes)
 " ]M            Jump on next class or method (normal, visual, operator modes)
 let g:pymode_rope = 1
-let g:pymode_rope_autoimport=1
-"let g:pymode_rope_regenerate_on_write=1
+let g:pymode_rope_autoimport = 1
+let g:pymode_rope_regenerate_on_write = 0
+let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'functools', 'itertools']
+let g:pymode_rope_autoimport_import_after_complete = 0
 
 " Documentation
-"let g:pymode_doc = 1
+let g:pymode_doc = 0
 "let g:pymode_doc_key = 'K'
 
 "Syntax checking
@@ -180,7 +191,7 @@ let g:pymode_folding = 1
 let g:pymode_run_bind = '<leader><leader>a'
 
 " Jedi - automatically starts the completion
-let g:jedi#popup_on_dot = 1
+"let g:jedi#popup_on_dot = 1
 
 "Jedi - show call signature
 let g:jedi#show_call_signatures = 1
@@ -309,7 +320,7 @@ let g:NumberToggleTrigger="<F2>"
 nnoremap <leader>ri :RunInInteractiveShell<space>
 
 
-""Trigger ultisnips"""""
+"Trigger ultisnips"""""
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -376,7 +387,7 @@ autocmd! BufWritePost *.wiki silent execute
             \ | execute ":redraw!"
 
 
-"""easymotion
+"" easymotion
 " Gif config
 map  <leader>/ <Plug>(easymotion-sn)
 omap <leader>/ <Plug>(easymotion-tn)
@@ -387,7 +398,7 @@ omap <leader>/ <Plug>(easymotion-tn)
 map  <leader>n <Plug>(easymotion-next)
 map  <leader>N <Plug>(easymotion-prev)
 
-"vimwiki
+"" vimwiki
 let wiki_1 = {}
 let wiki_1.path = "~/vimwiki"
 let wiki_1.syntax = 'markdown' 
@@ -408,7 +419,8 @@ let g:vimwiki_folding = 'expr'
 "autocmd! BufEnter *.md execute '!echo "Set Foldmethod"' | execute ':set foldmethod=expr'
 "
 "
-"vim-markdown config
+
+"" vim-markdown config
 let g:vim_markdown_folding_disabled = 0
 let g:vim_markdown_fenced_languages = ['c++=cpp', 'python=python', 'java=java'] "syntax highlighting in fenced code
 let g:vim_markdown_conceal = 0
@@ -494,6 +506,8 @@ nnoremap N Nzzzv
 
 "Delete buffer
 nnoremap <leader>bd :$bd<CR>
+nnoremap <leader><leader>bd :bd<cr>
+
 " airline
 if !exists("g:airline_symbols")
   let g:airline_symbols = {}
@@ -538,4 +552,14 @@ endif
 "This unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
 
+"Pydoc
+let g:pydoc_cmd='python -m pydoc'
 
+if strftime("%H") < 18 
+    colors solarized8_light_high
+else
+    colors neodark
+endif
+
+"" vim:fdm=expr:fdl=0
+"" vim:fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'""*')-2)\:'='
