@@ -1,5 +1,6 @@
 """ macos vs linux clipboard
- set autoread
+set autoread
+
 if has("mac")
   set clipboard+=unnamed
 else
@@ -202,7 +203,7 @@ command! ProjectRoot call projectroot#SetProjectRoot()
 
 "if ! exists("autocommands_loaded")
     "let autocommands_loaded = 1
-autocmd! BufRead * execute ':FollowSymlink' | execute ':ProjectRoot' 
+"autocmd! BufRead * execute ':FollowSymlink' | execute ':ProjectRoot' 
 "autocmd! BufRead * execute ':ProjectRoot'
 "endif
 
@@ -479,7 +480,7 @@ set mouse=a
 
 " show trailing whitespaces
 set list
-set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
+"set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
 augroup ListChars2
     au!
     autocmd filetype go set listchars+=tab:\ \ 
@@ -563,3 +564,8 @@ endif
 
 "" vim:fdm=expr:fdl=0
 "" vim:fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'""*')-2)\:'='
+
+"Snippets info
+let g:snips_author="Trang Tran Thi Thuy"
+let g:snips_email="thuytranga1@gmail.com"
+let g:snips_github="https://github.com/trangttt"
