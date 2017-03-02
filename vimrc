@@ -552,6 +552,11 @@ endif
 "This unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
 
+"Snippets info
+let g:snips_author="Trang Tran Thi Thuy"
+let g:snips_email="thuytranga1@gmail.com"
+let g:snips_github="https://github.com/trangttt"
+
 "Pydoc
 let g:pydoc_cmd='python -m pydoc'
 
@@ -564,8 +569,4 @@ endif
 "" vim:fdm=expr:fdl=0
 "" vim:fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'""*')-2)\:'='
 
-"Snippets info
-let g:snips_author="Trang Tran Thi Thuy"
-let g:snips_email="thuytranga1@gmail.com"
-let g:snips_github="https://github.com/trangttt"
 
