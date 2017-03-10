@@ -86,3 +86,7 @@
     export ECLIPSE_HOME="/Applications/Eclipse.app/Contents/Eclipse/"
     ##autoenv
     source $(brew --prefix autoenv)/activate.sh
+
+
+    #dircolors
+    eval $(gdircolors ~/dotfiles/dircolors.256dark)

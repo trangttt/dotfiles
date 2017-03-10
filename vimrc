@@ -99,6 +99,7 @@ Plugin 'vim-scripts/django.vim' "Django html syntax filetype htmldjango
 Plugin 'jmcomets/vim-pony' "Quickly jump between Django files
 Plugin 'fs111/pydoc.vim' "Integrate python documents to vim
 Plugin 'vim-scripts/python_match.vim' "Jumping between if/else try/catch for/while using %
+Plugin 'heavenshell/vim-pydocstring'
 "Plugin 'tmhedberg/matchit'
 
 """" Java
@@ -113,6 +114,10 @@ Plugin 'nelstrom/vim-markdown-folding'
 
 "Bash writing
 "Plugin 'vim-scripts/bash-support.vim'
+"
+
+"""" Blueprint
+Plugin 'kylef/apiblueprint.vim'
 
 ".tmux.conf
 "Plugin 'tmux-plugins/vim-tmux'
@@ -569,4 +574,6 @@ endif
 "" vim:fdm=expr:fdl=0
 "" vim:fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'""*')-2)\:'='
 
+"""Pydocstring
+nmap <silent> <leader>id <Plug>(pydocstring)
 
