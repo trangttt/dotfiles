@@ -57,6 +57,9 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
                                       org-gcal
+                                      kanban
+                                      gnuplot
+                                      (scrum :location (recipe :fetcher github :repo "ianxm/emacs-scrum"))
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -320,8 +323,10 @@ you should place your code here."
     ;; Todo configurations
   (setq org-use-fast-todo-selection t)
   (setq org-todo-keywords
-        (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-                (sequence "STARTED(s@/!)" "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING" "DEFFERED(f@/!)"))))
+        (quote ((sequence "TODO(t)" "NEXT(n)" "DOING(o)" "WAITING(a)" "|" "DONE(d)" )
+                ;;(sequence "PLANNING(p)" "INPROGRESS(i)" "BLOCKED(b)" "REVIEW(r)" "|" "COMPLETED(c)")
+                ;;(sequence "STARTED(s@/!)" "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING" "DEFFERED(f@/!)")
+                )))
   (setq org-todo-state-tags-triggers
         (quote (("CANCELLED" ("CANCELLED" . t))
                 ("WAITING" ("WAITING" . t))
@@ -411,6 +416,9 @@ you should place your code here."
         org-gcal-file-alist '(("thuytranga1@gmail.com" .  "~/org/google_calendar.org")
                               ;;("en.vietnamese#holiday@group.v.calendar.google.com" .  "~/org/vn_holidays.org")
                               ))
+
+   (require 'kanban)
+   (require 'scrum)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -459,7 +467,7 @@ you should place your code here."
  '(org-agenda-files (quote ("~/org/personal" "~/org/work" "~/org")))
  '(package-selected-packages
    (quote
-    (vimrc-mode dactyl-mode org-gcal request-deferred deferred monokai-theme solaried-light-theme solarized-theme org-projectile org-present org org-pomodoro alert log4e gntp org-download htmlize helm-company helm-c-yasnippet gnuplot flycheck-pos-tip pos-tip flycheck company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme)))
+    (scrum kanban vimrc-mode dactyl-mode org-gcal request-deferred deferred monokai-theme solaried-light-theme solarized-theme org-projectile org-present org org-pomodoro alert log4e gntp org-download htmlize helm-company helm-c-yasnippet gnuplot flycheck-pos-tip pos-tip flycheck company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme)))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
