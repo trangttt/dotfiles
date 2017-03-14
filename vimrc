@@ -41,13 +41,13 @@ Plugin 'dkprice/vim-easygrep'
 
 """" Vim notes
 Plugin 'vimwiki/vimwiki'
-Plugin 'jceb/vim-orgmode'
+"Plugin 'jceb/vim-orgmode'
 Plugin 'tpope/vim-speeddating' "Increase, decrease number, time
-Plugin 'dhruvasagar/vim-dotoo'
-Plugin 'chrisbra/NrrwRgn'
+"Plugin 'dhruvasagar/vim-dotoo'
+Plugin 'chrisbra/NrrwRgn' "Narrow Region, editing a portion of a file
 Plugin 'mattn/calendar-vim'
 Plugin 'vim-scripts/SyntaxRange'
-Plugin 'vim-scripts/utl.vim'
+Plugin 'vim-scripts/utl.vim' "Open url
 Plugin 'Rykka/riv.vim'
 
 """" Moving
@@ -577,3 +577,6 @@ endif
 """Pydocstring
 nmap <silent> <leader>id <Plug>(pydocstring)
 
+
+""" BluePrint
+"autocmd Filetype apiblueprint setlocal foldmethod=syntax
