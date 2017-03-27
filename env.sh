@@ -29,6 +29,7 @@
 
 
     function _containsElement(){
+        # Check whether $1 contains in the rest arguments
         local e
         for e in "${@:2}" ;
         do
@@ -45,6 +46,10 @@
         then
             echo "**Install new package. Remember to update ANSIBLE.**"
         fi
+    }
+
+    pidof () {
+        ps auxww | grep "$*" | grep -v grep | awk '{print $2}'
     }
 
 

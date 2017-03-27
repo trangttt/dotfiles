@@ -129,6 +129,14 @@
   blg = log --graph --decorate --all --abbrev-commit --pretty=oneline
   slog = log --graph --simplify-by-decoration --all --abbrev-commit --pretty=oneline
   lgso = log --graph --date=short --pretty=format:'%C(yellow)%h%Creset %cn%x09%cd %s%C(green bold)%d'
+lg = !"git lg1"
+lg1 = !"git lg1-specific --all"
+lg2 = !"git lg2-specific --all"
+lg3 = !"git lg3-specific --all"
+
+lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
+lg2-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
   ro = !git fetch origin && git reset --hard origin/master
   shorten = "!sh -c 'curl -i http://git.io -F url=$1' -"
   pushnotes = !sh -c 'git push $1 refs/notes/*' -

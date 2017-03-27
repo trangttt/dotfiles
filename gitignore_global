@@ -81,3 +81,7 @@ Thumbs.db
 ######################
 .gitignore
 .git
+*.tmp
+.python-version
+runtime/
+.ropeproject/

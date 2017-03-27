@@ -155,7 +155,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:pymode_rope = 1
 let g:pymode_rope_autoimport = 1
 let g:pymode_rope_regenerate_on_write = 0
-let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'functools', 'itertools']
+let g:pymode_rope_autoimport_modules = ['functools', 'itertools']
 let g:pymode_rope_autoimport_import_after_complete = 0
 
 " Documentation
@@ -164,9 +164,13 @@ let g:pymode_doc = 0
 
 "Syntax checking
 let g:pymode_python = 'python3' 
+let g:pymode_options_max_line_length = 89 
 "Linting
 let g:pymode_lint = 1
 let g:pymode_lint_checker = "pyflakes,pep8"
+"let g:pymode_lint_ignore = "E501"
+let g:pymode_lint_sort = ['E', 'C', 'I']
+
 " Auto check on save
 let g:pymode_lint_write = 1
 
