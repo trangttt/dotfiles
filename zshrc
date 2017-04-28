@@ -7,21 +7,22 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="pygmalion"
-#ZSH_THEME="ys"
-POWERLEVEL9K_MODE='awsome-patched'
+POWERLEVEL9K_MODE='patched-fontconfig'
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_RPROMPT_ON_NEWLINE=false
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-#POWERLEVEL9K_COLOR_SCHEME='light'
+POWERLEVEL9K_SHORTEN_STRATEGY='truncate_from_right'
+POWERLEVEL9K_SHORTEN_DELIMITER=''
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history virtualenv)
+POWERLEVEL9K_COLOR_SCHEME='dark'
 
 #POWERLEVEL9K_OS_ICON_BACKGROUND="white"
 #POWERLEVEL9K_OS_ICON_FOREGROUND="blue"
-POWERLEVEL9K_DIR_HOME_FOREGROUND="white"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
-#POWERLEVEL9K_MODE='awsome-fontconfig'
+#POWERLEVEL9K_DIR_HOME_FOREGROUND="white"
+#POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
+#POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -103,6 +104,8 @@ source $ZSH/oh-my-zsh.sh
 #Add env.sh
 source ~/dotfiles/env.sh
 
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 #Powerline
 powerline-daemon -q
 #export powerline_root=/Users/macbook/Library/Python/2.7/lib/python/site-packages
@@ -130,4 +133,3 @@ zle -N edit-command-line
 #bindkey -M vicmd v edit-command-line
 #bindkey "^X^E" edit-command-line
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

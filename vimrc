@@ -38,6 +38,7 @@ Plugin 'christoomey/vim-run-interactive' "Run interactive command <leader>ri
 Plugin 'szw/vim-maximizer' "Maximize window <F3>
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'dkprice/vim-easygrep'
+Plugin 'moll/vim-bbye' "Close vim without closing window
 
 """" Vim notes
 Plugin 'vimwiki/vimwiki'
@@ -111,6 +112,7 @@ Plugin 'tpope/vim-dispatch' "Dispatch make command
 "Plugin 'tpope/vim-markdown'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'nelstrom/vim-markdown-folding'
+Plugin 'suan/vim-instant-markdown' "Display markdown preview instant
 
 "Bash writing
 "Plugin 'vim-scripts/bash-support.vim'
@@ -164,10 +166,11 @@ let g:pymode_doc = 0
 
 "Syntax checking
 let g:pymode_python = 'python3' 
-let g:pymode_options_max_line_length = 89 
+let g:pymode_options_max_line_length = 95 
+
 "Linting
 let g:pymode_lint = 1
-let g:pymode_lint_checker = "pyflakes,pep8"
+let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 "let g:pymode_lint_ignore = "E501"
 let g:pymode_lint_sort = ['E', 'C', 'I']
 
@@ -582,5 +585,5 @@ endif
 nmap <silent> <leader>id <Plug>(pydocstring)
 
 
-""" BluePrint
-"autocmd Filetype apiblueprint setlocal foldmethod=syntax
+let @i='viwyggOimport p``'
+let g:VimuxRunnerIndex='personal:2.0'

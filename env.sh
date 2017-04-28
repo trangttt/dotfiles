@@ -95,3 +95,18 @@
 
     #dircolors
     eval $(gdircolors ~/dotfiles/dircolors.256dark)
+
+
+    # color man page
+    man() {
+        LESS_TERMCAP_md=$(tput bold; tput setaf 4)            \
+        LESS_TERMCAP_me=$(tput sgr0)                           \
+        LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 3) \
+        LESS_TERMCAP_ue=$(tput sgr0)                           \
+        command man "$@"
+    }
+
+    restart_camera() {
+        sudo killall VDCAsistant
+    }
+
