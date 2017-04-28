@@ -85,3 +85,9 @@ Thumbs.db
 .python-version
 runtime/
 .ropeproject/
+
+# propertytrail
+# ######################
+*_2017*.apib
+*.apib.bak
+endpoints.json

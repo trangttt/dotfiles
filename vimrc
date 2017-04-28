@@ -156,6 +156,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " ]M            Jump on next class or method (normal, visual, operator modes)
 let g:pymode_rope = 1
 let g:pymode_rope_autoimport = 1
+let g:pymode_rope_autoimport_bind = '<C-c>ra'
 let g:pymode_rope_regenerate_on_write = 0
 let g:pymode_rope_autoimport_modules = ['functools', 'itertools']
 let g:pymode_rope_autoimport_import_after_complete = 0
