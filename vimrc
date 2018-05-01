@@ -8,6 +8,7 @@ endif
 
 set nu
 
+
 set nocompatible
 filetype off
 
@@ -114,16 +115,29 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'suan/vim-instant-markdown' "Display markdown preview instant
 
+""""" Solidity
+Plugin 'tomlion/vim-solidity'
+
 "Bash writing
-"Plugin 'vim-scripts/bash-support.vim'
+Plugin 'vim-scripts/bash-support.vim'
 "
 
 """" Blueprint
 Plugin 'kylef/apiblueprint.vim'
 
+"""" Dockerfile
+Plugin 'ekalinin/Dockerfile.vim'
+
 ".tmux.conf
 "Plugin 'tmux-plugins/vim-tmux'
 call vundle#end()
+
+""" python3
+let g:python3_host_prog = '/Users/macbook/.pyenv/versions/3.6.0b4/bin/python'
+let g:python_host_prog =  '/Users/macbook/.pyenv/versions/2.7/bin/python'
+"let g:loaded_python3_provider=0
+"let g:loaded_python_provider=0
+
 
 """ Vim airline
 "Fix error: vim-airline - Display even with ONLY 1 window
@@ -167,7 +181,7 @@ let g:pymode_doc = 0
 
 "Syntax checking
 let g:pymode_python = 'python3' 
-let g:pymode_options_max_line_length = 95 
+let g:pymode_options_max_line_length = 116 
 
 "Linting
 let g:pymode_lint = 1
@@ -177,6 +191,7 @@ let g:pymode_lint_sort = ['E', 'C', 'I']
 
 " Auto check on save
 let g:pymode_lint_write = 1
+let g:pymode_lint_unmodified = 0
 
 let g:pymode_lint_todo_symbol = 'TD'
 let g:pymode_lint_comment_symbol = 'CC'
@@ -223,7 +238,14 @@ command! ProjectRoot call projectroot#SetProjectRoot()
 
 filetype plugin indent on
 syntax on
+set foldenable
 let mapleader = ','
+
+"Bash
+au FileType sh let g:sh_fold_enabled=5
+au FileType sh let g:is_bash=1
+au FileType sh set foldmethod=syntax
+syntax enable
 
 
 """ Replaced. Tmux-navigator Moving between spanes smoothly
@@ -288,6 +310,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['pyflakes']
+let g:syntastic_sh_shellcheck_args = "-x"
+
+ noremap <Leader>scp :SyntasticCheck pylint<CR>
 
 
 """ CtrlP
@@ -588,3 +614,8 @@ nmap <silent> <leader>id <Plug>(pydocstring)
 
 let @i='viwyggOimport p``'
 let g:VimuxRunnerIndex='personal:2.0'
+
+
+""" Soft wrap for long line
+nmap <leader>sw :set wrap linebreak nolist<cr>
+

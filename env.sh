@@ -4,6 +4,7 @@
 ###########################################################################
     # PATH evn
     export PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/Library/Python/2.7/bin:$HOME/bin"
+    export PATH=$PATH:$HOME/Documents/PRACTICE/Python/bigdata/spark-2.1.1-bin-hadoop2.7/bin
     export EDITOR=vim
     # export PYTHONPATH=$PYTHONPATH
     # export MANPATH="/usr/local/man:$MANPATH"
@@ -65,7 +66,11 @@
     alias rm='rm -i'
 
     #eval `gdircolors -b ~/.dir_colors`
-    alias ls='gls -hF --color=auto'
+    #alias ls='gls -hF --color=auto'
+    alias ls='exa'
+    alias ll='exa -al'
+    alias la="exa -abghl --git --color=automatic"
+
     alias grep="grep --color=always"
     alias egrep="egrep --color=always"
     alias dls="cd $HOME/Downloads"
@@ -75,6 +80,8 @@
     alias tmuxcfg="vim $HOME/dotfiles/tmux.conf"
     alias v="vim"
     alias g="git"
+    alias docker_clean_images='docker rmi $(docker images -a --filter=dangling=true -q)'
+    alias docker_clean_ps='docker rm $(docker ps --filter=status=exited --filter=status=created -q)'
 
 ###########################################################################
 #  CUSTOM INSTALLATIONS 

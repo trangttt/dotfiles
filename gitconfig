@@ -11,7 +11,7 @@
 
 
 [core]
-    excludesfile = ~/.gitignore_global
+	excludesfile = /Users/macbook/.gitignore_global
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     quotepath = false
     # line endings
@@ -25,7 +25,7 @@
     #prevent crlf (then you will have to deal with the problem -- dos2unix, etc)
     #safecrlf = true
 
-    editor = vim
+	editor = nvim
     #editor = subl -w
 
 [color]
@@ -68,6 +68,8 @@
   d = diff --color-words
   cam = commit -a -m
   upm = !git fetch upstream && git merge upstream/master
+  hide = update-index --assume-unchanged
+  unhide = update-index --no-assume-unchanged
 
   # least used
   br = branch -a
@@ -94,8 +96,8 @@
   sync = !git pull && git push
   es = !git pull --rebase && git push
   lf = log --pretty=fuller
-  ignorechanges = update-index --assume-unchanged
-  noticechanges = update-index --no-assume-unchanged
+  # ignorechanges = update-index --assume-unchanged
+  # noticechanges = update-index --no-assume-unchanged
   gc-ap = gc --aggressive --prune
   listconf = config --global --list
   lsm = log -M --stat
@@ -218,3 +220,9 @@ lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold b
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
   required = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

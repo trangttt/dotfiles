@@ -67,7 +67,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=( common-aliases git colored-man colorize github vagrant virtualenv pip python brew osx zsh-syntax-highlighting zsh-autosuggestions )
+plugins=(common-aliases git colored-man colorize github pip python brew osx zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
