@@ -4,7 +4,7 @@
 ###########################################################################
     # PATH evn
     export PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/Library/Python/2.7/bin:$HOME/bin"
-    export PATH=$PATH:$HOME/Documents/PRACTICE/Python/bigdata/spark-2.1.1-bin-hadoop2.7/bin
+    export PATH=$PATH:$HOME/Documents/PRACTICE/Python/bigdata/spark-2.1.1-bin-hadoop2.7/bin:/usr/local/go/bin:$HOME/go/bin
     export EDITOR=vim
     # export PYTHONPATH=$PYTHONPATH
     # export MANPATH="/usr/local/man:$MANPATH"
@@ -17,6 +17,14 @@
     # Owner
     export USER_NAME="TrangTran"
     #eval "$(rbenv init -)"
+
+    # GOPATH
+    export GOPATH=${HOME}/go
+
+    # nvm
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 ###########################################################################
 #  FUNCTIONS 
@@ -89,7 +97,7 @@
     #Install ecd
     export ENHANCD_COMMAND=ecd 
     export ENHANCD_FILTER=fzy:percol
-    source ~/Downloads/enhancd/init.sh
+    source ${HOME}/Documents/PROGRAMS/enhancd/init.sh
 
     export PASSWORD_STORE_DIR="$HOME/Dropbox/pass" 
     export GNUPGHOME="$HOME/Dropbox/gpg" 

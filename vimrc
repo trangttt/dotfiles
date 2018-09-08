@@ -128,13 +128,24 @@ Plugin 'kylef/apiblueprint.vim'
 """" Dockerfile
 Plugin 'ekalinin/Dockerfile.vim'
 
+
+""" GoLang
+Plugin 'fatih/vim-go'
+
+""" javascript
+Plugin 'prettier/vim-prettier', { 'do': 'yarn install' } " Prettier - format javascript
+Plugin 'pangloss/vim-javascript'
+
+
 ".tmux.conf
 "Plugin 'tmux-plugins/vim-tmux'
 call vundle#end()
 
 """ python3
-let g:python3_host_prog = '/Users/macbook/.pyenv/versions/3.6.0b4/bin/python'
-let g:python_host_prog =  '/Users/macbook/.pyenv/versions/2.7/bin/python'
+"let g:python3_host_prog = '/Users/trantran/.pyenv/versions/3.6.0b4/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python2'
+"let g:python_host_prog =  '/Users/trantran/.pyenv/versions/2.7/bin/python'
+let g:python_host_prog =  '/usr/local/bin/python3'
 "let g:loaded_python3_provider=0
 "let g:loaded_python_provider=0
 
@@ -507,8 +518,17 @@ colorscheme neodark
 "colorscheme solarized
 "colorscheme solarized8_dark
 
-if !exists("termguicolors")
+if (empty($TMUX))
+  if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
     set termguicolors
+  endif
 endif
 
 " enable mouse
@@ -600,7 +620,8 @@ let g:snips_github="https://github.com/trangttt"
 let g:pydoc_cmd='python -m pydoc'
 
 if strftime("%H") < 18 
-    colors solarized8_light_high
+    "colors solarized8_light_high
+    colors neodark
 else
     colors neodark
 endif
@@ -618,4 +639,14 @@ let g:VimuxRunnerIndex='personal:2.0'
 
 """ Soft wrap for long line
 nmap <leader>sw :set wrap linebreak nolist<cr>
+
+"""go-vim
+au BufNewFile,BufRead *.go set foldmethod=syntax
+
+"""javascript
+" vim-javascript
+let g:javascript_plugin_jsdoc = 1 "enable syntax highlight for JSDoc
+let g:javascript_plugin_flow = 1 "enable syntax highlight for Flow
+
+
 
